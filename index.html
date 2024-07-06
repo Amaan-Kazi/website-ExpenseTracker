@@ -9,7 +9,6 @@
         <meta name="description" content="Track your expenses">
 
         <!--<link rel="stylesheet" href="stylesheets/index.css">
-        <script defer src="js/index.js"></script>
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico">-->
 
         <!--Google Fonts-->
@@ -18,8 +17,21 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
         <title>Expense Tracker</title>
+        <script defer src="js/index.js"></script>
     </head>
     <body>
-        <h1>Hello World</h1>
+        <h1>Expense Tracker</h1>
+        <h1>API, SQL Testing</h1>
+
+        <form name = "TableDetails" id = "TableDetails" action = "#" autocomplete="on">
+            <input type = "text" name = "email" id = "email" placeholder="Enter email id"/>
+            <input type = "text" name = "tableName" id = "tableName" placeholder="Enter table name"/>
+            <input type = "submit" name = "TableDetailsSubmit" id = "TableDetailsSubmit" value = "SUBMIT">
+        </form>
+        <form name = "SQLDetails" id = "SQLDetails" action = "#" autocomplete="off">
+            <input type = "text" name = "Data" id = "Data" placeholder = "Enter data to store">
+            <input type = "submit" name = "SQLDetailsSubmit" id = "SQLDetailsSubmit" value = "SUBMIT">
+        </form>
+        <button onclick="Retrieve()">RETRIEVE</button>
     </body>
 </html>

@@ -13,18 +13,22 @@ TableDetails.addEventListener("submit", function (event)
     console.log(email + "_" + tableName)
 })
 
-SQLDetails.addEventListener("submit", function (event)
+SQLDetails.addEventListener("submit", async function (event)
 {
     event.preventDefault()
+
+    let response = await fetch("https://expensetracker-amaankazi.onrender.com:3000")
 
     data = SQLDetails.Data.value
     console.log(data)
 })
 
-function Retrieve()
+async function Retrieve()
 {
-    fetch("https://expensetracker-amaankazi.onrender.com:3000/amaankazi1793@gmail.com", {
+    let response = await fetch("https://expensetracker-amaankazi.onrender.com:3000/amaankazi1793@gmail.com", {
         method: "POST",
         body: JSON.stringify({ task: "exampleTask" })
     })
+
+    console.logo(response)
 }

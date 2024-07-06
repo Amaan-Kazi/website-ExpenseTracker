@@ -21,7 +21,6 @@ SQLDetails.addEventListener("submit", async function (event)
     console.log(response)
 
     data = SQLDetails.Data.value
-    console.log(data)
 })
 
 async function Retrieve()
@@ -34,5 +33,5 @@ async function Retrieve()
         body: JSON.stringify({ task: "exampleTask" })
     })
 
-    console.logo(response)
+    console.log(response)
 }

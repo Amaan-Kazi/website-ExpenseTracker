@@ -28,6 +28,9 @@ async function Retrieve()
 {
     let response = await fetch("https://expensetracker-amaankazi.onrender.com/amaankazi1793", {
         method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify({ task: "exampleTask" })
     })
 

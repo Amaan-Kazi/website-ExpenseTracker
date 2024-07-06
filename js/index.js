@@ -23,5 +23,8 @@ SQLDetails.addEventListener("submit", function (event)
 
 function Retrieve()
 {
-    console.log(data)
+    fetch("https://expensetracker-amaankazi.onrender.com:3000/amaankazi1793@gmail.com", {
+        method: "POST",
+        body: JSON.stringify({ task: "exampleTask" })
+    })
 }

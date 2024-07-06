@@ -17,7 +17,7 @@ SQLDetails.addEventListener("submit", async function (event)
 {
     event.preventDefault()
 
-    let response = await fetch("https://expensetracker-amaankazi.onrender.com:3000/")
+    let response = await fetch("https://expensetracker-amaankazi.onrender.com/")
     console.log(response)
 
     data = SQLDetails.Data.value
@@ -26,7 +26,7 @@ SQLDetails.addEventListener("submit", async function (event)
 
 async function Retrieve()
 {
-    let response = await fetch("https://expensetracker-amaankazi.onrender.com:3000/amaankazi1793", {
+    let response = await fetch("https://expensetracker-amaankazi.onrender.com/amaankazi1793", {
         method: "POST",
         body: JSON.stringify({ task: "exampleTask" })
     })

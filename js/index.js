@@ -16,14 +16,27 @@ TableDetails.addEventListener("submit", function (event)
 SQLDetails.addEventListener("submit", async function (event)
 {
     event.preventDefault()
-
-    let response = await fetch("https://expensetracker-amaankazi.onrender.com/status")
+    data = SQLDetails.data.value
+    
+    let response = await fetch("https://expensetracker-amaankazi.onrender.com/amaankazi1793@gmail.com/create-table", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            password: "test123",
+            tableName: data
+        })
+    })
     let responseData = await response.json()
     console.log(responseData)
 })
 
 async function Retrieve()
 {
+    let response = await fetch("https://expensetracker-amaankazi.onrender.com/status")
+    let responseData = await response.json()
+    console.log(responseData)
     /*
     let response = await fetch("https://expensetracker-amaankazi.onrender.com/amaankazi1793@gmail.com", {
         method: "POST",
@@ -36,16 +49,4 @@ async function Retrieve()
     console.log(responseData)
     */
 
-    let response = await fetch("https://expensetracker-amaankazi.onrender.com/amaankazi1793@gmail.com/create-table", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            password: "test123",
-            tableName: "testTable"
-        })
-    })
-    let responseData = await response.json()
-    console.log(responseData)
 }

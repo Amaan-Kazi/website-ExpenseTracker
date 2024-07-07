@@ -17,10 +17,9 @@ SQLDetails.addEventListener("submit", async function (event)
 {
     event.preventDefault()
 
-    let response = await fetch("https://expensetracker-amaankazi.onrender.com/status")
-    console.log(response)
-
-    data = SQLDetails.Data.value
+    const response = await fetch("https://expensetracker-amaankazi.onrender.com/status")
+    const data2 = await response.json()
+    console.log(JSON.parse(data2))
 })
 
 async function Retrieve()

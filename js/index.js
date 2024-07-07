@@ -18,7 +18,7 @@ SQLDetails.addEventListener("submit", async function (event)
     event.preventDefault()
 
     let response = await fetch("https://expensetracker-amaankazi.onrender.com/status")
-    console.log(response.text().PromiseResult)
+    console.log(JSON.parse(response.text().PromiseResult))
 
     data = SQLDetails.Data.value
 })
@@ -33,5 +33,5 @@ async function Retrieve()
         body: JSON.stringify({ password: "test123", task: "exampleTask" })
     })
 
-    console.log(response.text().PromiseResult)
+    console.log(JSON.parse(response.text()))
 }

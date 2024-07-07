@@ -16,7 +16,7 @@ TableDetails.addEventListener("submit", function (event)
 SQLDetails.addEventListener("submit", async function (event)
 {
     event.preventDefault()
-    data = SQLDetails.data.value
+    data = SQLDetails.Data.value
     
     let response = await fetch("https://expensetracker-amaankazi.onrender.com/amaankazi1793@gmail.com/create-table", {
         method: "POST",

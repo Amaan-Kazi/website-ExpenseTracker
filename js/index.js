@@ -24,13 +24,13 @@ SQLDetails.addEventListener("submit", async function (event)
 
 async function Retrieve()
 {
-    let response = await fetch("https://expensetracker-amaankazi.onrender.com/amaankazi1793@gmail.com", {
+    const response = await fetch("https://expensetracker-amaankazi.onrender.com/amaankazi1793@gmail.com", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({ password: "test123", task: "exampleTask" })
     })
-
-    console.log(response.text())
+    const data2 = await response.json()
+    console.log(data2)
 }

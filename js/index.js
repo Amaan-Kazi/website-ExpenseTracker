@@ -17,20 +17,20 @@ SQLDetails.addEventListener("submit", async function (event)
 {
     event.preventDefault()
 
-    const response = await fetch("https://expensetracker-amaankazi.onrender.com/status")
-    const data2 = await response.json()
-    console.log(data2)
+    let response = await fetch("https://expensetracker-amaankazi.onrender.com/status")
+    let responseData = await response.json()
+    console.log(responseData)
 })
 
 async function Retrieve()
 {
-    const response = await fetch("https://expensetracker-amaankazi.onrender.com/amaankazi1793@gmail.com", {
+    let response = await fetch("https://expensetracker-amaankazi.onrender.com/amaankazi1793@gmail.com", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({ password: "test123", task: "exampleTask" })
     })
-    const data2 = await response.json()
-    console.log(data2)
+    let responseData = await response.json()
+    console.log(responseData)
 }

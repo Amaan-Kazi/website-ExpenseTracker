@@ -30,7 +30,7 @@ async function Retrieve()
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ task: "exampleTask" })
+        body: JSON.stringify({ password: "test123", task: "exampleTask" })
     })
 
     console.log(JSON.parse(response))

@@ -1,8 +1,67 @@
+const AccountDetails = document.getElementById("AccountDetails")
 const TableDetails = document.getElementById("TableDetails")
-const SQLDetails = document.getElementById("SQLDetails")
+const TransactionDetails = document.getElementById("TransactionDetails")
 
-var data
+AccountDetails.addEventListener("submit", function (event) {event.preventDefault()})
+TableDetails.addEventListener("submit", function (event) {event.preventDefault()})
+TransactionDetails.addEventListener("submit", function (event) {event.preventDefault()})
 
+var email
+var password
+
+async function GetStatus()
+{
+    let response = await fetch("https://expensetracker-amaankazi.onrender.com/status")
+    let responseData = await response.json()
+    console.log(responseData)
+}
+
+async function SubmitAccountDetails()
+{
+    email = AccountDetails.Email.value
+    password = AccountDetails.Password.value
+}
+
+async function Register()
+{}
+
+async function Login()
+{}
+
+async function GetTables()
+{
+    console.log(TableDetails.TableName.value)
+}
+
+async function CreateTable()
+{
+    let response = await fetch(`https://expensetracker-amaankazi.onrender.com/${email}/create-table`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            password: password,
+            tableName: TableDetails.TableName.value
+        })
+    })
+    let responseData = await response.json()
+    console.log(responseData)
+}
+
+async function DeleteTable()
+{}
+
+async function GetTransactions()
+{}
+
+async function CreateTransaction()
+{}
+
+async function DeleteTransaction()
+{}
+
+/*
 TableDetails.addEventListener("submit", function (event)
 {
     event.preventDefault()
@@ -48,5 +107,6 @@ async function Retrieve()
     let responseData = await response.json()
     console.log(responseData)
     */
-
+/*
 }
+*/

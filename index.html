@@ -17,21 +17,35 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
         <title>Expense Tracker</title>
+        <link rel = "stylesheet", href = "stylesheets/index.css">
         <script defer src="js/index.js"></script>
     </head>
     <body>
         <h1>Expense Tracker</h1>
         <h1>API, SQL Testing</h1>
 
-        <form name = "TableDetails" id = "TableDetails" action = "#" autocomplete="on">
-            <input type = "text" name = "email" id = "email" placeholder="Enter email id"/>
-            <input type = "text" name = "tableName" id = "tableName" placeholder="Enter table name"/>
-            <input type = "submit" name = "TableDetailsSubmit" id = "TableDetailsSubmit" value = "SUBMIT">
+        <button onclick = "GetStatus()">GET SERVER STATUS</button>
+        <form name = "AccountDetails" id = "AccountDetails" action = "#" autocomplete="on" style = "border: 1px solid black;">
+            <input type = "text" name = "Email" id = "Email" placeholder="Enter email"><br>
+            <input type = "text" name = "Password" id = "Password" placeholder="Enter password"><br>
+            <button type = "submit" onclick="SubmitAccountDetails()">SUBMIT</button><br>
+            <button type = "submit" onclick="Register()">REGISTER</button><br>
+            <button type = "submit" onclick="Login()">LOGIN</button>
         </form>
-        <form name = "SQLDetails" id = "SQLDetails" action = "#" autocomplete="off">
-            <input type = "text" name = "Data" id = "Data" placeholder = "Enter data to store">
-            <input type = "submit" name = "SQLDetailsSubmit" id = "SQLDetailsSubmit" value = "SUBMIT">
+        <form name = "TableDetails" id = "TableDetails" action = "#" autocomplete="off">
+            <input type = "text" name = "TableName" id = "TableName" placeholder = "Enter table name"><br>
+            <!--<input type = "button" onclick = "GetTables()" name = "GetTables" id = "GetTables" value = "GET TABLES"><br>-->
+            <button type = "submit" onclick = "GetTables()">GET TABLES</button> <br>
+            <button type = "submit" onclick = "CreateTable()">CREATE TABLE</button><br>
+            <button type = "submit" onclick = "DeleteTable()">DELETE TABLE</button>
         </form>
-        <button onclick="Retrieve()">RETRIEVE</button>
+        <form name = "TransactionDetails" id = "TransactionDetails" action = "#" autocomplete="off">
+            <input type = "text" name = "TableName" id = "TableName" placeholder = "Enter table name"><br>
+            <input type = "text" name = "TransactionName" id = "TransactionName" placeholder = "Enter transaction name"><br>
+            <input type = "text" name = "TransactionAmount" id = "TransactionAmount" placeholder = "Enter transaction amount"><br>
+            <button type = "submit" onclick="GetTransactions()">GET TRANSACTIONS</button><br>
+            <button type = "submit" onclick="CreateTransaction()">CREATE TRANSACTION</button><br>
+            <button type = "submit" onclick="DeleteTransaction()">DELETE TRANSACTION</button>
+        </form>
     </body>
 </html>

@@ -30,7 +30,17 @@ async function Login()
 
 async function GetTables()
 {
-    console.log(TableDetails.TableName.value)
+    let response = await fetch(`https://expensetracker-amaankazi.onrender.com/${email}/get-tables`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            password: password
+        })
+    })
+    let responseData = await response.json()
+    console.log(responseData)
 }
 
 async function CreateTable()
@@ -50,7 +60,20 @@ async function CreateTable()
 }
 
 async function DeleteTable()
-{}
+{
+    let response = await fetch(`https://expensetracker-amaankazi.onrender.com/${email}/delete-table`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            password: password,
+            tableName: TableDetails.TableName.value
+        })
+    })
+    let responseData = await response.json()
+    console.log(responseData)
+}
 
 async function GetTransactions()
 {}

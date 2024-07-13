@@ -79,7 +79,20 @@ async function GetTransactions()
 {}
 
 async function CreateTransaction()
-{}
+{
+    let response = await fetch(`https://expensetracker-amaankazi.onrender.com/${email}/create-transaction`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            password: password,
+            tableName: TransactionDetails.TableName.value,
+            //transactionName: TransactionDetails.TransactionName.value,
+            //transactionAmount: TransactionDetails.TransactionAmount.value
+        })
+    })
+}
 
 async function DeleteTransaction()
 {}

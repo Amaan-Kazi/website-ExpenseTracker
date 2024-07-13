@@ -92,6 +92,9 @@ async function CreateTransaction()
             //transactionAmount: TransactionDetails.TransactionAmount.value
         })
     })
+    let responseData = await response.json()
+
+    console.log(responseData)
 }
 
 async function DeleteTransaction()

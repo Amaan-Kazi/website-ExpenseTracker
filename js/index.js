@@ -76,7 +76,23 @@ async function DeleteTable()
 }
 
 async function GetTransactions()
-{}
+{
+    let response = await fetch(`https://expensetracker-amaankazi.onrender.com/${email}/${TransactionDetails.TableName.value}/get-transactions`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            password: password,
+            tableName: TransactionDetails.TableName.value,
+            //transactionName: TransactionDetails.TransactionName.value,
+            //transactionAmount: TransactionDetails.TransactionAmount.value
+        })
+    })
+    let responseData = await response.json()
+
+    console.log(responseData)
+}
 
 async function CreateTransaction()
 {

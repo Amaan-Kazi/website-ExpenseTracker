@@ -80,7 +80,7 @@ async function GetTransactions()
 
 async function CreateTransaction()
 {
-    let response = await fetch(`https://expensetracker-amaankazi.onrender.com/${email}/create-transaction`, {
+    let response = await fetch(`https://expensetracker-amaankazi.onrender.com/${email}/${TransactionDetails.TableName.value}/create-transaction`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

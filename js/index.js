@@ -39,7 +39,20 @@ async function Register()
 }
 
 async function Login()
-{}
+{
+    let response = await fetch(`https://expensetracker-amaankazi.onrender.com/login`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: AccountDetails.Email.value,
+            password: AccountDetails.Password.value
+        })
+    })
+    let responseData = await response.json()
+    console.log(responseData)
+}
 
 async function GetTables()
 {

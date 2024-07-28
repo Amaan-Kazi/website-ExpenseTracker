@@ -2,7 +2,7 @@ const htmlBody = document.getElementById("htmlBody");
 const DarkThemeIcon = document.getElementById("DarkThemeIcon");
 const LightThemeIcon = document.getElementById("LightThemeIcon");
 
-var queryString = Window.location.search();
+var queryString = window.location.search;
 console.log(queryString); 
 
 function ToggleTheme()

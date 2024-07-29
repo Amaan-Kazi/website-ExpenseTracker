@@ -1,0 +1,2 @@
+/test/:name
+    x-test-name: name is ":name"

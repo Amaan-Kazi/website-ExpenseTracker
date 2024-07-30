@@ -9,6 +9,11 @@ const passwordRule1 = document.getElementById("PasswordRule1");
 const passwordRule2 = document.getElementById("PasswordRule2");
 const passwordRule3 = document.getElementById("PasswordRule3");
 
+const inputPasswordShow = document.getElementById("inputPasswordShow");
+const inputPasswordHide = document.getElementById("inputPasswordHide");
+const inputConfirmPasswordShow = document.getElementById("inputConfirmPasswordShow");
+const inputConfirmPasswordHide = document.getElementById("inputConfirmPasswordHide");
+
 var emailId;
 var userName;
 var password;
@@ -51,8 +56,6 @@ function MatchPasswords()
     {
         console.log(register.inputPassword.value.length);
         passwordConfirmHelpBlock.innerText = "";
-        //passwordConfirmHelpBlock.style.color = "rgb(56, 243, 56)";
-        //passwordConfirmHelpBlock.innerText = "Passwords Match";
     }
     else if ((register.inputPassword.value != null) && (register.inputPassword.value != null))
     {
@@ -68,6 +71,16 @@ function TogglePassword()
     inputPassword.setAttribute("type", type);
 
     // toggle eye icon
+    if (inputPasswordHide.style.display == "none")
+    {
+        inputPasswordShow.style.display = "none";
+        inputPasswordHide.style.display = "inline-block";
+    }
+    else
+    {
+        inputPasswordShow.style.display = "inline-block";
+        inputPasswordHide.style.display = "none";
+    }
 }
 
 function ToggleConfirmPassword()
@@ -77,6 +90,16 @@ function ToggleConfirmPassword()
     inputConfirmPassword.setAttribute("type", type);
 
     // toggle eye icon
+    if (inputConfirmPasswordHide.style.display == "none")
+        {
+            inputConfirmPasswordShow.style.display = "none";
+            inputConfirmPasswordHide.style.display = "inline-block";
+        }
+        else
+        {
+            inputConfirmPasswordShow.style.display = "inline-block";
+            inputConfirmPasswordHide.style.display = "none";
+        }
 }
 
 register.addEventListener("submit", function (event) {

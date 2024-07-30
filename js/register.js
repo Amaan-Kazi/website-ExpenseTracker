@@ -1,4 +1,10 @@
 const register = document.getElementById("RegisterForm");
+
+const inputPassword = document.getElementById("inputPassword");
+const inputConfirmPassword = document.getElementById("inputConfirmPassword");
+
+const passwordConfirmHelpBlock = document.getElementById("passwordConfirmHelpBlock");
+
 const passwordRule1 = document.getElementById("PasswordRule1");
 const passwordRule2 = document.getElementById("PasswordRule2");
 const passwordRule3 = document.getElementById("PasswordRule3");
@@ -37,6 +43,40 @@ function ValidatePassword()
     {
         passwordRule3.style.color = "rgb(189, 55, 55)";
     }
+}
+
+function MatchPasswords()
+{
+    if ((register.inputPassword.value == register.inputConfirmPassword.value) && (register.inputPassword.value != null))
+    {
+        console.log(register.inputPassword.value.length);
+        passwordConfirmHelpBlock.innerText = "";
+        //passwordConfirmHelpBlock.style.color = "rgb(56, 243, 56)";
+        //passwordConfirmHelpBlock.innerText = "Passwords Match";
+    }
+    else if ((register.inputPassword.value != null) && (register.inputPassword.value != null))
+    {
+        passwordConfirmHelpBlock.style.color = "rgb(189, 55, 55)";
+        passwordConfirmHelpBlock.innerText = "Passwords do not match";
+    }
+}
+
+function TogglePassword()
+{
+    // toggle the type attribute
+    const type = inputPassword.getAttribute("type") === "password" ? "text" : "password";
+    inputPassword.setAttribute("type", type);
+
+    // toggle eye icon
+}
+
+function ToggleConfirmPassword()
+{
+    // toggle the type attribute
+    const type = inputConfirmPassword.getAttribute("type") === "password" ? "text" : "password";
+    inputConfirmPassword.setAttribute("type", type);
+
+    // toggle eye icon
 }
 
 register.addEventListener("submit", function (event) {

@@ -22,7 +22,7 @@
                     <label for="inputPassword" class="form-label">Password</label>
                     <span class = "input-group mb-3">
                         <input type="password" id="inputPassword" class="form-control" onkeyup="ValidatePassword()" aria-describedby="passwordHelpBlock">
-                        <button class="btn btn-outline-secondary" id="togglePassword" type = "button">show</button>
+                        <button class="btn btn-outline-secondary" id="togglePassword" type = "button" onclick="TogglePassword()">show</button>
                     </span>
                     <div id="passwordHelpBlock" class="form-text">
                         Your password must contain
@@ -35,10 +35,11 @@
                 </div>
                 <div class = "mb-3">
                     <label for="inputConfirmPassword" class="form-label">Confirm Password</label>
-                    <input type="password" id="inputConfirmPassword" class="form-control" aria-describedby="passwordConfirmHelpBlock">
-                    <div id="passwordConfirmHelpBlock" class="form-text" style="color: rgb(189, 55, 55);">
-                        Passwords do not match
-                    </div>
+                    <span class = "input-group mb-3">
+                        <input type="password" id="inputConfirmPassword" class="form-control" onkeyup = "MatchPasswords()" aria-describedby="passwordConfirmHelpBlock">
+                        <button class="btn btn-outline-secondary" id="toggleConfirmPassword" type = "button" onclick="ToggleConfirmPassword()">show</button>
+                    </span>
+                    <div id="passwordConfirmHelpBlock" class="form-text"></div>
                 </div>
                 <div style = "display: flex; gap: 5px;">
                     <input type="button" class="form-control" id="Login" value = "Login">

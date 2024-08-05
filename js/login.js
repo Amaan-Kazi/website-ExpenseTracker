@@ -2,8 +2,6 @@ const register = document.getElementById("RegisterForm");
 
 const inputPassword = document.getElementById("inputPassword");
 const inputConfirmPassword = document.getElementById("inputConfirmPassword");
-const inputEmailId = document.getElementById("emailId");
-const inputUserName = document.getElementById("userName");
 
 const passwordConfirmHelpBlock = document.getElementById("passwordConfirmHelpBlock");
 
@@ -16,20 +14,9 @@ const inputPasswordHide = document.getElementById("inputPasswordHide");
 const inputConfirmPasswordShow = document.getElementById("inputConfirmPasswordShow");
 const inputConfirmPasswordHide = document.getElementById("inputConfirmPasswordHide");
 
-var registerModal = new bootstrap.Modal(document.getElementById("RegisterModal"));
-var liveToast = new bootstrap.Toast(document.getElementById("liveToast"));
-
-const toastHeader = document.getElementById("ToastHeader");
-const toastBody = document.getElementById("ToastBody");
-const toastDetail = document.getElementById("ToastDetail");
-
-function toast(header, detail, body)
-{
-    toastHeader.textContent = header;
-    toastBody.innerHTML = body;
-    toastDetail.textContent = detail;
-    liveToast.show();
-}
+var emailId;
+var userName;
+var password;
 
 function ValidatePassword()
 {
@@ -67,6 +54,7 @@ function MatchPasswords()
 {
     if ((register.inputPassword.value == register.inputConfirmPassword.value) && (register.inputPassword.value != null))
     {
+        console.log(register.inputPassword.value.length);
         passwordConfirmHelpBlock.innerText = "";
     }
     else if ((register.inputPassword.value != null) && (register.inputPassword.value != null))
@@ -103,77 +91,32 @@ function ToggleConfirmPassword()
 
     // toggle eye icon
     if (inputConfirmPasswordHide.style.display == "none")
-    {
-        inputConfirmPasswordShow.style.display = "none";
-        inputConfirmPasswordHide.style.display = "inline-block";
-    }
-    else
-    {
-        inputConfirmPasswordShow.style.display = "inline-block";
-        inputConfirmPasswordHide.style.display = "none";
-    }
-}
-
-function Register()
-{
-    let currentPassword = register.inputPassword.value;
-    let userName = register.userName.value;
-
-    let validPassword = true;
-    let errors = '<ul style = "margin-bottom: 0px">';
-    let noErrors = true;
-
-    // Email should contain @
-    if (!(register.emailId.value.includes("@")))
-    {
-        noErrors = false;
-        errors += "<li>Invalid email, it should contain '@'</li>";
-    }
-
-    if (/^[a-zA-Z0-9]/.test(userName) == true)
-    {
-        noErrors = false;
-        errors += "<li>Username can only contain characters and numbers</li>";
-    }
-
-    if (!((currentPassword.length >= 8) && (currentPassword.length <= 20)))
-    {
-        noErrors = false;
-        errors += "<li>Password must contain 8-20 characters</li>";
-        validPassword = false;
-    }
-
-    if (!((/[a-z]/.test(currentPassword) == true) && (/[A-Z]/.test(currentPassword) == true)))
-    {
-        noErrors = false;
-        errors+= "<li>Password must contain a Uppercase and Lowercase Character</li>";
-        validPassword = false;
-    }
-
-    if (!((/[0-9]/.test(currentPassword) == true) || (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(currentPassword) == true)))
-    {
-        noErrors = false;
-        errors += "<li>Password must contain a number or a special character</li>";
-        validPassword = false;
-    }
-
-    if (validPassword == true)
-    {
-        if (register.inputConfirmPassword.value != currentPassword)
         {
-            noErrors = false;
-            errors += "<li>Passwords dont match</li>";
+            inputConfirmPasswordShow.style.display = "none";
+            inputConfirmPasswordHide.style.display = "inline-block";
         }
-    }
+        else
+        {
+            inputConfirmPasswordShow.style.display = "inline-block";
+            inputConfirmPasswordHide.style.display = "none";
+        }
+}
 
-    errors += "</ul>";
+register.addEventListener("submit", function (event) {
+    event.preventDefault();
+    emailId = register.emailId.value;
+    userName = register.userName.value;
     
-    if (noErrors == true)
+    if (register.inputPassword.value == register.inputConfirmPassword.value)
     {
-        registerModal.show();
+        password = register.inputPassword.value;
     }
     else
     {
-        toast("Register", "ERROR", errors);
+        console.log("Passwords do not match");
     }
-}
+
+    console.log(emailId);
+    console.log(userName);
+    console.log(password);
+});

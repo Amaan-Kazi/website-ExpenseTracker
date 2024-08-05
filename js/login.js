@@ -101,22 +101,3 @@ function ToggleConfirmPassword()
             inputConfirmPasswordHide.style.display = "none";
         }
 }
-
-register.addEventListener("submit", function (event) {
-    event.preventDefault();
-    emailId = register.emailId.value;
-    userName = register.userName.value;
-    
-    if (register.inputPassword.value == register.inputConfirmPassword.value)
-    {
-        password = register.inputPassword.value;
-    }
-    else
-    {
-        console.log("Passwords do not match");
-    }
-
-    console.log(emailId);
-    console.log(userName);
-    console.log(password);
-});

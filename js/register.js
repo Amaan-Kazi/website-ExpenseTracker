@@ -6,6 +6,7 @@ const inputEmailId = document.getElementById("emailId");
 const inputUserName = document.getElementById("userName");
 
 const passwordConfirmHelpBlock = document.getElementById("passwordConfirmHelpBlock");
+const userNameHelpBlock = document.getElementById("userNameHelpBlock");
 
 const passwordRule1 = document.getElementById("PasswordRule1");
 const passwordRule2 = document.getElementById("PasswordRule2");
@@ -29,6 +30,18 @@ function toast(header, detail, body)
     toastBody.innerHTML = body;
     toastDetail.textContent = detail;
     liveToast.show();
+}
+
+function ValidateUserName()
+{
+    if (/[^a-zA-Z0-9 ]/.test(register.userName.value) == true)
+    {
+        userNameHelpBlock.textContent = "User Name can only contain Letters and Numbers";
+    }
+    else
+    {
+        userNameHelpBlock.textContent = "";
+    }
 }
 
 function ValidatePassword()
@@ -130,10 +143,10 @@ function Register()
         errors += "<li>Invalid email, it should contain '@'</li>";
     }
 
-    if (/^[a-zA-Z0-9]/.test(userName) == true)
+    if (/[^a-zA-Z0-9 ]/.test(userName) == true)
     {
         noErrors = false;
-        errors += "<li>Username can only contain characters and numbers</li>";
+        errors += "<li>User Name can only contain Letters and Numbers</li>";
     }
 
     if (!((currentPassword.length >= 8) && (currentPassword.length <= 20)))
@@ -146,7 +159,7 @@ function Register()
     if (!((/[a-z]/.test(currentPassword) == true) && (/[A-Z]/.test(currentPassword) == true)))
     {
         noErrors = false;
-        errors+= "<li>Password must contain a Uppercase and Lowercase Character</li>";
+        errors+= "<li>Password must contain an Uppercase and a Lowercase letter</li>";
         validPassword = false;
     }
 
@@ -162,7 +175,7 @@ function Register()
         if (register.inputConfirmPassword.value != currentPassword)
         {
             noErrors = false;
-            errors += "<li>Passwords dont match</li>";
+            errors += "<li>Passwords do not match</li>";
         }
     }
 

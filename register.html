@@ -31,7 +31,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="userName" class="form-label">User Name</label>
-                    <input type="text" class="form-control" id="userName" placeholder="Full Name">
+                    <input type="text" class="form-control" id="userName" onkeyup="ValidateUserName()" placeholder="Full Name">
+                    <div id="userNameHelpBlock" class="form-text" style = "color: rgb(189, 55, 55);"></div>
                 </div>
                 <div class = "mb-3">
                     <label for="inputPassword" class="form-label">Password</label>

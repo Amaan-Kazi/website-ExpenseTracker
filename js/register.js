@@ -127,7 +127,7 @@ function ToggleConfirmPassword()
     }
 }
 
-function Register()
+async function Register()
 {
     let currentPassword = register.inputPassword.value;
     let userName = register.userName.value;
@@ -141,6 +141,12 @@ function Register()
     {
         noErrors = false;
         errors += "<li>Invalid email, it should contain '@'</li>";
+    }
+
+    if (userName.replace(/\s/g, "").length < 4)
+    {
+        noErrors = false;
+        errors += "<li>User Name must have atleast 4 characters</li>";
     }
 
     if (/[^a-zA-Z0-9 ]/.test(userName) == true)
@@ -183,6 +189,20 @@ function Register()
     
     if (noErrors == true)
     {
+        let response = await fetch(`https://expensetracker-amaankazi.onrender.com/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: register.emailId.value,
+                userName: userName,
+                password: currentPassword
+            })
+        })
+        let responseData = await response.json()
+        console.log(responseData)
+
         registerModal.show();
     }
     else

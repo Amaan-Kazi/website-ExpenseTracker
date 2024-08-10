@@ -79,6 +79,7 @@
                 <button type = "button" class = "form-control btn btn-primary" id = "RegisterButton" onclick="Register()">Register</button>
             </form>
         </div>
+
         <div id = "RegisterModal" class="modal fade" tabindex="-1" data-bs-backdrop = "static" data-bs-keyboard = "false">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -87,12 +88,17 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div id = "modalBody" class="modal-body">
-                        An email containing a verification code was sent to {email} <br>
+                        An email containing a verification code was sent to <br>
+                        <span id = "modalEmail" style="color: #3987fd;">{email}</span><br>
                         check your inbox and spam folder
+
+                        <div class = "input-group input-group-lg">
+                            <input type="text" id = "verificationCode" maxlength="6" style = "text-align: center; font-size: 48px; letter-spacing: 10px; margin-top: 20px;" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Change Email</button>
-                        <button type="button" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick = "document.getElementById('emailId').focus();">Change Email</button>
+                        <button type="button" class="btn btn-primary" onclick = "RegisterCode()">Submit</button>
                     </div>
                 </div>
             </div>

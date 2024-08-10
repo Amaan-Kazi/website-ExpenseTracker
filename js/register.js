@@ -20,6 +20,8 @@ const inputConfirmPasswordHide = document.getElementById("inputConfirmPasswordHi
 var registerModal = new bootstrap.Modal(document.getElementById("RegisterModal"));
 var liveToast = new bootstrap.Toast(document.getElementById("liveToast"));
 
+const modalEmail = document.getElementById("modalEmail");
+
 const toastHeader = document.getElementById("ToastHeader");
 const toastBody = document.getElementById("ToastBody");
 const toastDetail = document.getElementById("ToastDetail");
@@ -203,6 +205,7 @@ async function Register()
         let responseData = await response.json()
         console.log(responseData)
 
+        modalEmail.textContent = register.emailId.value;
         registerModal.show();
     }
     else
@@ -210,3 +213,22 @@ async function Register()
         toast("Register", "ERROR", errors);
     }
 }
+
+async function RegisterCode()
+{
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/registerCode`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: register.emailId.value,
+            code: document.getElementById("verificationCode").value
+        })
+    })
+    let responseData = await response.json()
+    console.log(responseData)
+}
+
+
+registerModal.show()

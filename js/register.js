@@ -201,12 +201,22 @@ async function Register()
                 userName: userName,
                 password: currentPassword
             })
-        })
-        let responseData = await response.json()
-        console.log(responseData)
+        });
+        let responseData = await response.json();
 
-        modalEmail.textContent = register.emailId.value;
-        registerModal.show();
+        if (responseData.status == "SUCCESSFUL")
+        {
+            modalEmail.textContent = register.emailId.value;
+            registerModal.show();
+        }
+        else if (responseData.status == "USER INPUT ERROR")
+        {
+            toast("Register", "ERRORS", responseData.errors);
+        }
+        else
+        {
+            toast("Register", "ERROR", responseData.error);
+        }
     }
     else
     {
@@ -225,10 +235,17 @@ async function RegisterCode()
             email: register.emailId.value,
             code: document.getElementById("verificationCode").value
         })
-    })
-    let responseData = await response.json()
-    console.log(responseData)
+    });
+    let responseData = await response.json();
+    
+    if (responseData.status == "SUCCESSFUL")
+    {
+        registerModal.hide();
+        toast("Register", "Successful", "The account has been succesfully registered");
+    }
+    else
+    {
+        registerModal.hide();
+        toast("Register", responseData.status, responseData.error);
+    }
 }
-
-
-registerModal.show()

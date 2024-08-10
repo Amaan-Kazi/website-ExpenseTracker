@@ -189,7 +189,7 @@ async function Register()
     
     if (noErrors == true)
     {
-        let response = await fetch(`https://expensetracker-amaankazi.onrender.com/register`, {
+        let response = await fetch(`https://amaankazi-expensetracker.onrender.com/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

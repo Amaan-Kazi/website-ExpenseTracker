@@ -11,7 +11,7 @@ var password
 
 async function GetStatus()
 {
-    let response = await fetch("https://expensetracker-amaankazi.onrender.com/status")
+    let response = await fetch("https://amaankazi-expensetracker.onrender.com/status")
     let responseData = await response.json()
     console.log(responseData)
 }
@@ -24,7 +24,7 @@ async function SubmitAccountDetails()
 
 async function Register()
 {
-    let response = await fetch(`https://expensetracker-amaankazi.onrender.com/register`, {
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -40,7 +40,7 @@ async function Register()
 
 async function Login()
 {
-    let response = await fetch(`https://expensetracker-amaankazi.onrender.com/login`, {
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -56,7 +56,7 @@ async function Login()
 
 async function GetTables()
 {
-    let response = await fetch(`https://expensetracker-amaankazi.onrender.com/${email}/get-tables`, {
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${email}/get-tables`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -71,7 +71,7 @@ async function GetTables()
 
 async function CreateTable()
 {
-    let response = await fetch(`https://expensetracker-amaankazi.onrender.com/${email}/create-table`, {
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${email}/create-table`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -87,7 +87,7 @@ async function CreateTable()
 
 async function DeleteTable()
 {
-    let response = await fetch(`https://expensetracker-amaankazi.onrender.com/${email}/delete-table`, {
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${email}/delete-table`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -103,7 +103,7 @@ async function DeleteTable()
 
 async function GetTransactions()
 {
-    let response = await fetch(`https://expensetracker-amaankazi.onrender.com/${email}/${TransactionDetails.TableName.value}/get-transactions`, {
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${email}/${TransactionDetails.TableName.value}/get-transactions`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -122,7 +122,7 @@ async function GetTransactions()
 
 async function CreateTransaction()
 {
-    let response = await fetch(`https://expensetracker-amaankazi.onrender.com/${email}/${TransactionDetails.TableName.value}/create-transaction`, {
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${email}/${TransactionDetails.TableName.value}/create-transaction`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -158,7 +158,7 @@ SQLDetails.addEventListener("submit", async function (event)
     event.preventDefault()
     data = SQLDetails.Data.value
     
-    let response = await fetch("https://expensetracker-amaankazi.onrender.com/amaankazi1793@gmail.com/create-table", {
+    let response = await fetch("https://amaankazi-expensetracker.onrender.com/amaankazi1793@gmail.com/create-table", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -174,11 +174,11 @@ SQLDetails.addEventListener("submit", async function (event)
 
 async function Retrieve()
 {
-    let response = await fetch("https://expensetracker-amaankazi.onrender.com/status")
+    let response = await fetch("https://amaankazi-expensetracker.onrender.com/status")
     let responseData = await response.json()
     console.log(responseData)
     /*
-    let response = await fetch("https://expensetracker-amaankazi.onrender.com/amaankazi1793@gmail.com", {
+    let response = await fetch("https://amaankazi-expensetracker.onrender.com/amaankazi1793@gmail.com", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

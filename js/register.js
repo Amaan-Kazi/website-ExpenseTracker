@@ -27,6 +27,8 @@ const toastHeader = document.getElementById("ToastHeader");
 const toastBody = document.getElementById("ToastBody");
 const toastDetail = document.getElementById("ToastDetail");
 
+var userInfo = {};
+
 function toast(header, detail, body)
 {
     toastHeader.textContent = header;
@@ -208,6 +210,13 @@ async function Register()
         if (responseData.status == "SUCCESSFUL")
         {
             modalEmail.textContent = register.emailId.value;
+
+            userInfo = {
+                email: register.emailId.value,
+                userName: userName,
+                password: currentPassword
+            }
+
             registerModal.show();
         }
         else if (responseData.status == "USER INPUT ERROR")
@@ -242,7 +251,14 @@ async function RegisterCode()
     if (responseData.status == "SUCCESSFUL")
     {
         registerModal.hide();
-        toast("Register", "Successful", "The account has been succesfully registered");
+
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+        toast("Register", "Successful", "The account has been succesfully registered<br>Redirecting in 3 seconds");
+
+        setTimeout(() => {
+            window.location.href = "./expenses.html";
+        }, 3000)
     }
     else
     {

@@ -41,7 +41,7 @@
                 <div class = "mb-3">
                     <label for="inputPassword" class="form-label">Password</label>
                     <span class = "input-group mb-3">
-                        <input type="password" id="inputPassword" class="form-control" onkeyup="ValidatePassword()" aria-describedby="passwordHelpBlock">
+                        <input type="password" id="inputPassword" class="form-control" aria-describedby="passwordHelpBlock">
                         <button class="btn btn-outline-secondary" id="togglePassword" type = "button" onclick="TogglePassword()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" id = "inputPasswordShow" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                 <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
@@ -53,18 +53,10 @@
                             </svg>
                         </button>
                     </span>
-                    <div id="passwordHelpBlock" class="form-text">
-                        Your password must contain
-                        <ul>
-                            <li id = "PasswordRule1">8-20 characters</li>
-                            <li id = "PasswordRule2">Uppercase and Lowercase Letters</li>
-                            <li id = "PasswordRule3">Numbers and optionally special characters</li>
-                        </ul>
-                    </div>
                 </div>
                 <div style = "display: flex; gap: 5px;">
-                    <input type="button" class="form-control" id="Login" value = "Login">
-                    <input type="submit" class="form-control" id="Register" value = "Register">
+                    <input type="submit" class="form-control" id="Reset Password" value = "Reset Password">
+                    <button type = "button" class = "form-control btn btn-primary" id = "RegisterButton" onclick="Login()">Login</button>
                 </div>
             </form>
         </div>

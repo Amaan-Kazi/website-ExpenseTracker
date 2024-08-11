@@ -83,6 +83,27 @@
         </nav>
       </div>
     </div>
+
+    <script>
+      if (localStorage.getItem("theme") != null)
+      {
+        let theme = localStorage.getItem("theme");
+
+        document.getElementById("htmlBody").setAttribute("data-bs-theme", theme);
+
+        if(theme == "dark")
+        {
+          document.getElementById("LightThemeIcon").style.display = "none";
+          document.getElementById("DarkThemeIcon").style.display = "inline-block";
+        }
+        else
+        {
+          document.getElementById("LightThemeIcon").style.display = "inline-block";
+          document.getElementById("DarkThemeIcon").style.display = "none";
+        }
+      }
+    </script>
+
     <div id = "EmptyHeader" style = "height: 83px; margin-bottom: 10px;"></div>
     <div id = "MainContent" class = "container-fluid">
       <div class="card" style="width: 18rem;">

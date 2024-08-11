@@ -14,12 +14,13 @@ function ToggleTheme()
         LightThemeIcon.style.display = "none";
         DarkThemeIcon.style.display = "inline-block";
         htmlBody.setAttribute("data-bs-theme", "dark");
+        localStorage.setItem("theme", "dark");
     }
     else
     {
         LightThemeIcon.style.display = "inline-block";
         DarkThemeIcon.style.display = "none";
         htmlBody.setAttribute("data-bs-theme", "light");
+        localStorage.setItem("theme", "light");
     }
 }
-

@@ -1,4 +1,5 @@
 const register = document.getElementById("RegisterForm");
+const htmlBody = document.getElementById("htmlBody");
 
 const inputPassword = document.getElementById("inputPassword");
 const inputConfirmPassword = document.getElementById("inputConfirmPassword");

@@ -4,41 +4,46 @@ const LightThemeIcon = document.getElementById("LightThemeIcon");
 
 var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-if (userInfo != null) {
-    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/login`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            email: userInfo.email,
-            password: userInfo.inputPassword
-        })
-    });
-    let responseData = await response.json();
-
-    if (responseData.status == "SUCCESSFUL")
+async function Authenticate()
     {
-        userInfo.userName = responseData.userName;
-        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+    if (userInfo != null) {
+        let response = await fetch(`https://amaankazi-expensetracker.onrender.com/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: userInfo.email,
+                password: userInfo.inputPassword
+            })
+        });
+        let responseData = await response.json();
 
-        toast("Login", "Successful", `You have succesfully logged in as<br><span style = "color: #3987fd;">${responseData.userName} [${login.emailId.value}]</span>`);
-    }
-    else if (responseData.status == "SERVER ERROR")
-    {
-        toast("Login", "ERROR", "SERVER ERROR");
-        window.location.href = "./login.html";
+        if (responseData.status == "SUCCESSFUL")
+        {
+            userInfo.userName = responseData.userName;
+            localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+            toast("Login", "Successful", `You have succesfully logged in as<br><span style = "color: #3987fd;">${responseData.userName} [${login.emailId.value}]</span>`);
+        }
+        else if (responseData.status == "SERVER ERROR")
+        {
+            toast("Login", "ERROR", "SERVER ERROR");
+            window.location.href = "./login.html";
+        }
+        else
+        {
+            toast("Login", "ERROR", responseData.error);
+            window.location.href = "./login.html";
+        }
     }
     else
     {
-        toast("Login", "ERROR", responseData.error);
         window.location.href = "./login.html";
     }
 }
-else
-{
-    window.location.href = "./login.html";
-}
+
+Authenticate();
 
 function ToggleTheme()
 {

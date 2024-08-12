@@ -28,7 +28,7 @@ async function Authenticate()
             },
             body: JSON.stringify({
                 email: userInfo.email,
-                password: userInfo.inputPassword
+                password: userInfo.password
             })
         });
         let responseData = await response.json();

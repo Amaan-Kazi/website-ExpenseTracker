@@ -43,12 +43,16 @@ async function Authenticate()
         else if (responseData.status == "SERVER ERROR")
         {
             toast("Login", "ERROR", "SERVER ERROR");
-            window.location.href = "./login.html";
+            setTimeout(() => {
+                window.location.href = "./login.html";
+            }, 3000);
         }
         else
         {
             toast("Login", "ERROR", responseData.error); //
-            window.location.href = "./login.html";
+            setTimeout(() => {
+                window.location.href = "./login.html";
+            }, 3000);
         }
     }
     else

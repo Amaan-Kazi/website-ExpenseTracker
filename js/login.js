@@ -65,7 +65,7 @@ async function Login()
         toast("Login", "Successful", `You have succesfully logged in as<br><span style = "color: #3987fd;">${responseData.userName} [${login.emailId.value}]</span><br>Redirecting in 3 seconds`);
         setTimeout(() => {
             window.location.href = "./expenses.html";
-        }, 3000)
+        }, 3000);
     }
     else if (responseData.status == "SERVER ERROR")
     {

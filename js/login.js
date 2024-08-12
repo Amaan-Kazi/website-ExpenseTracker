@@ -52,6 +52,7 @@ async function Login()
         })
     });
     let responseData = await response.json();
+    console.log(responseData);
 
     if (responseData.status == "SUCCESSFUL")
     {

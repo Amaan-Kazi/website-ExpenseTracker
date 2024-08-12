@@ -215,7 +215,7 @@ async function Register()
                 email: register.emailId.value,
                 userName: userName,
                 password: currentPassword
-            }
+            };
 
             registerModal.show();
         }

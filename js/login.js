@@ -56,6 +56,13 @@ async function Login()
 
     if (responseData.status == "SUCCESSFUL")
     {
+        userInfo = {
+            email: login.emailId.value,
+            userName: responseData.userName,
+            password: login.inputPassword.value
+        };
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
         toast("Login", "Successful", "You have succesfully logged in<br>Redirecting in 3 seconds");
         setTimeout(() => {
             window.location.href = "./expenses.html";

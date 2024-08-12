@@ -2,7 +2,21 @@ const htmlBody = document.getElementById("htmlBody");
 const DarkThemeIcon = document.getElementById("DarkThemeIcon");
 const LightThemeIcon = document.getElementById("LightThemeIcon");
 
+var liveToast = new bootstrap.Toast(document.getElementById("liveToast"));
+
+const toastHeader = document.getElementById("ToastHeader");
+const toastBody = document.getElementById("ToastBody");
+const toastDetail = document.getElementById("ToastDetail");
+
 var userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+function toast(header, detail, body)
+{
+    toastHeader.textContent = header;
+    toastBody.innerHTML = body;
+    toastDetail.textContent = detail;
+    liveToast.show();
+}
 
 async function Authenticate()
     {
@@ -33,7 +47,7 @@ async function Authenticate()
         }
         else
         {
-            toast("Login", "ERROR", responseData.error);
+            toast("Login", "ERROR", responseData.error); //
             window.location.href = "./login.html";
         }
     }

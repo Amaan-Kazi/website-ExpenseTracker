@@ -48,7 +48,7 @@ async function Login()
         },
         body: JSON.stringify({
             email: login.emailId.value,
-            password: login.password.value
+            password: login.inputPassword.value
         })
     });
     let responseData = await response.json();

@@ -52,7 +52,6 @@ async function Login()
         })
     });
     let responseData = await response.json();
-    console.log(responseData);
 
     if (responseData.status == "SUCCESSFUL")
     {
@@ -63,7 +62,7 @@ async function Login()
         };
         localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
-        toast("Login", "Successful", `You have succesfully logged in as<br>${responseData.userName} [${login.emailId.value}]<br>Redirecting in 3 seconds`);
+        toast("Login", "Successful", `You have succesfully logged in as<br><span style = "color: #3987fd;">${responseData.userName} [${login.emailId.value}]</span><br>Redirecting in 3 seconds`);
         setTimeout(() => {
             window.location.href = "./expenses.html";
         }, 3000)

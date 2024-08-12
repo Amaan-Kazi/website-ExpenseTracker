@@ -19,8 +19,9 @@ function toast(header, detail, body)
 }
 
 async function Authenticate()
+{
+    if (userInfo != null)
     {
-    if (userInfo != null) {
         let response = await fetch(`https://amaankazi-expensetracker.onrender.com/login`, {
             method: "POST",
             headers: {
@@ -38,21 +39,11 @@ async function Authenticate()
             userInfo.userName = responseData.userName;
             localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
-            toast("Login", "Successful", `You have succesfully logged in as<br><span style = "color: #3987fd;">${responseData.userName} [${login.emailId.value}]</span>`);
-        }
-        else if (responseData.status == "SERVER ERROR")
-        {
-            toast("Login", "ERROR", "SERVER ERROR");
-            setTimeout(() => {
-                window.location.href = "./login.html";
-            }, 3000);
+            toast("Expenses", "Successful Authentication", `Succesfully logged in as<br><span style = "color: #3987fd;">${responseData.userName} [${userInfo.email}]</span>`);
         }
         else
         {
-            toast("Login", "ERROR", responseData.error); //
-            setTimeout(() => {
-                window.location.href = "./login.html";
-            }, 3000);
+            window.location.href = "./login.html";
         }
     }
     else

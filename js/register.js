@@ -258,7 +258,7 @@ async function RegisterCode()
 
         setTimeout(() => {
             window.location.href = "./expenses.html";
-        }, 3000)
+        }, 3000);
     }
     else
     {

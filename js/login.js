@@ -1,22 +1,24 @@
-const register = document.getElementById("RegisterForm");
+const login = document.getElementById("LoginForm");
 
 const inputPassword = document.getElementById("inputPassword");
-const inputConfirmPassword = document.getElementById("inputConfirmPassword");
-
-const passwordConfirmHelpBlock = document.getElementById("passwordConfirmHelpBlock");
-
-const passwordRule1 = document.getElementById("PasswordRule1");
-const passwordRule2 = document.getElementById("PasswordRule2");
-const passwordRule3 = document.getElementById("PasswordRule3");
-
 const inputPasswordShow = document.getElementById("inputPasswordShow");
 const inputPasswordHide = document.getElementById("inputPasswordHide");
-const inputConfirmPasswordShow = document.getElementById("inputConfirmPasswordShow");
-const inputConfirmPasswordHide = document.getElementById("inputConfirmPasswordHide");
 
-var emailId;
-var userName;
-var password;
+var liveToast = new bootstrap.Toast(document.getElementById("liveToast"));
+
+const toastHeader = document.getElementById("ToastHeader");
+const toastBody = document.getElementById("ToastBody");
+const toastDetail = document.getElementById("ToastDetail");
+
+var userInfo = {};
+
+function toast(header, detail, body)
+{
+    toastHeader.textContent = header;
+    toastBody.innerHTML = body;
+    toastDetail.textContent = detail;
+    liveToast.show();
+}
 
 function TogglePassword()
 {
@@ -34,5 +36,36 @@ function TogglePassword()
     {
         inputPasswordShow.style.display = "inline-block";
         inputPasswordHide.style.display = "none";
+    }
+}
+
+async function Login()
+{
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/login`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: login.emailId.value,
+            password: login.password.value
+        })
+    });
+    let responseData = await response.json();
+
+    if (responseData.status == "SUCCESSFUL")
+    {
+        toast("Login", "Successful", "You have succesfully logged in<br>Redirecting in 3 seconds");
+        setTimeout(() => {
+            window.location.href = "./expenses.html";
+        }, 3000)
+    }
+    else if (responseData.status == "SERVER ERROR")
+    {
+        toast("Login", "ERROR", "SERVER ERROR");
+    }
+    else
+    {
+        toast("Login", "ERROR", responseData.error);
     }
 }

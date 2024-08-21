@@ -55,13 +55,12 @@ async function Authenticate()
 
 async function getTables()
 {
-    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/get-tables`, {
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${userInfo.email}/get-tables`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            email: userInfo.email,
             password: userInfo.password
         })
     });

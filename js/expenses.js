@@ -53,8 +53,6 @@ async function Authenticate()
     }
 }
 
-await Authenticate();
-
 async function getTables()
 {
     let response = await fetch(`https://amaankazi-expensetracker.onrender.com/get-tables`, {
@@ -71,6 +69,9 @@ async function getTables()
 
     console.log(responseData);
 }
+
+await Authenticate();
+await getTables();
 
 function ToggleTheme()
 {

@@ -8,6 +8,8 @@ const toastHeader = document.getElementById("ToastHeader");
 const toastBody = document.getElementById("ToastBody");
 const toastDetail = document.getElementById("ToastDetail");
 
+const mainContent = document.getElementById("MainContent");
+
 var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
 function toast(header, detail, body)
@@ -67,6 +69,32 @@ async function getTables()
     let responseData = await response.json();
 
     console.log(responseData);
+
+    for (let i = 0; i < responseData.response.length; i++)
+    {
+        let membersList = "<ul>";
+
+        for (let j = 0; j < responseData.response[i].sheetusers.length; j++)
+        {
+            membersList += `<li>${responseData.response[i].sheetusers[j]}</li>`;
+        }
+        membersList += "</ul>";
+
+        mainContent.innerHTML += `
+            <div class="card" style="width: 30rem;">
+                <div class="card-body">
+                    <h5 class="card-title text-info fs-1">${responseData.response[i].sheetname}</h5>
+                    <p class="card-text fs-3" style="margin: 0;">
+                        Members:
+                        ${membersList}
+                    </p>
+                    <button class = "btn btn-primary" style="width: 100%;">Dashboard</button>
+                </div>
+            </div>
+        `
+    }
+
+    // Add message to display when user has no tables
 }
 
 Authenticate();

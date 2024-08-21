@@ -53,7 +53,24 @@ async function Authenticate()
     }
 }
 
-Authenticate();
+await Authenticate();
+
+async function getTables()
+{
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/get-tables`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: userInfo.email,
+            password: userInfo.password
+        })
+    });
+    let responseData = await response.json();
+
+    console.log(responseData);
+}
 
 function ToggleTheme()
 {

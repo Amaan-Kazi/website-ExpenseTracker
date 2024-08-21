@@ -72,13 +72,16 @@
                     </div>
                 </div>
             </nav>
-            <div class = "container-fluid bg-secondary-subtle">
-                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Library</li>
-                    </ol>
-                </nav>
+            <div class = "container-fluid bg-secondary-subtle" style="padding: 5px;"> <!--display: flex; flex-direction: column; justify-content: center;">-->
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb" style="margin: 0;">
+                            <li class="breadcrumb-item active">Expenses</li>
+                            <!--<li class="breadcrumb-item active" aria-current="page">Library</li>-->
+                        </ol>
+                    </nav>
+                    <button class="btn btn-outline-primary btn-sm" style="padding-right: 15px; padding-left: 15px;">New</button>
+                </div>
             </div>
         </div>
 
@@ -102,7 +105,8 @@
             }
         </script>
 
-        <div id = "EmptyHeader" style = "height: 83px; margin-bottom: 10px;"></div>
+        <div id = "EmptyHeader" style = "height: 83px; margin-bottom: 50px;"></div>
+        <!--
         <div id = "MainContent" class = "container-fluid">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
@@ -246,6 +250,40 @@
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     <a href="#" class="card-link">Card link</a>
                     <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+        </div>
+        -->
+
+        <div id = "MainContent" class = "container-fluid">
+            <div class="card" style="width: 30rem;">
+                <div class="card-body">
+                    <h5 class="card-title text-info fs-1">{Sheet Name}</h5>
+                    <p class="card-text fs-3" style="margin: 0;">
+                        Members:
+                        <ul>
+                            <li>Member 1</li>
+                            <li>Member 2</li>
+                            <li>Member 3</li>
+                            <li>Member 4</li>
+                        </ul>
+                    </p>
+                    <button class = "btn btn-primary" style="width: 100%;">Dashboard</button>
+                </div>
+            </div>
+            <div class="card" style="width: 30rem;">
+                <div class="card-body">
+                    <h5 class="card-title text-info fs-1">{Sheet Name}</h5>
+                    <p class="card-text fs-3" style="margin: 0;">
+                        Members:
+                        <ul>
+                            <li>Member 1</li>
+                            <li>Member 2</li>
+                            <li>Member 3</li>
+                            <li>Member 4</li>
+                        </ul>
+                    </p>
+                    <button class = "btn btn-primary" style="width: 100%;">Dashboard</button>
                 </div>
             </div>
         </div>

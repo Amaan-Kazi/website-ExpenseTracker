@@ -38,6 +38,7 @@ async function Authenticate()
         {
             userInfo.userName = responseData.userName;
             localStorage.setItem("userInfo", JSON.stringify(userInfo));
+            document.getElementById("AccountDropdown").innerText = responseData.userName;
 
             toast("Expenses", "Successful Authentication", `Succesfully logged in as<br><span style = "color: #3987fd;">${responseData.userName} [${userInfo.email}]</span>`);
         }

@@ -70,8 +70,8 @@ async function getTables()
     console.log(responseData);
 }
 
-await Authenticate();
-await getTables();
+Authenticate();
+getTables();
 
 function ToggleTheme()
 {

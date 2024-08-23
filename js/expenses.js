@@ -110,7 +110,7 @@ async function getTables()
 function LogOut()
 {
     localStorage.removeItem("userInfo");
-    window.location.href("./login.html");
+    window.location.href = "./login.html";
 }
 
 function DeleteSheet()

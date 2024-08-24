@@ -68,8 +68,7 @@ async function getTables()
     });
     let responseData = await response.json();
 
-    console.log(responseData);
-
+    mainContent.innerHTML = "";
     for (let i = 0; i < responseData.response.length; i++)
     {
         let membersList = "<ul>";
@@ -113,15 +112,30 @@ function LogOut()
     window.location.href = "./login.html";
 }
 
-function DeleteSheet()
+async function New()
 {
-    console.log("Deleting Sheet");
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${userInfo.email}/create-table`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            password: userInfo.password,
+            tableName: "test"
+        })
+    });
+    let responseData = await response.json();
+    console.log(responseData);
+    getTables();
 }
+
+async function DeleteSheet()
+{}
 
 console.log(window.location.pathname);
 
-//Authenticate();
-//getTables();
+Authenticate();
+getTables();
 
 function ToggleTheme()
 {

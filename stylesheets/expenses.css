@@ -1,8 +1,0 @@
-#MainContent {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    row-gap: 20px;
-    column-gap: 10px;
-}

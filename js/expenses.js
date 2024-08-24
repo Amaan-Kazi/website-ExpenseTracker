@@ -118,8 +118,10 @@ function DeleteSheet()
     console.log("Deleting Sheet");
 }
 
-Authenticate();
-getTables();
+console.log(window.location.pathname);
+
+//Authenticate();
+//getTables();
 
 function ToggleTheme()
 {

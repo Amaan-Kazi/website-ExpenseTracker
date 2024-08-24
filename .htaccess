@@ -1,0 +1,1 @@
+RewriteRule ^expenses/(.*)$ expenses.html?q=$1 [L,NC]

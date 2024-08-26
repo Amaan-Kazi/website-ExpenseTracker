@@ -80,9 +80,10 @@ async function getTables()
         membersList += "</ul>";
 
         mainContent.innerHTML += `
-            <div class="card sheets" style="width: 30rem;">
+            <div class="card" style="width: 30rem;" data-id = "${responseData.response[i].sheetid}">
                 <div class="card-body">
                     <h5 class="card-title text-info fs-1">${responseData.response[i].sheetname}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">${responseData.response[i].sheetid}</h6>
                     <p class="card-text fs-3" style="margin: 0;">
                         Members:
                         ${membersList}
@@ -95,7 +96,7 @@ async function getTables()
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Actions</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><button class="dropdown-item text-danger" onclick="DeleteSheet()">Delete</button></li>
+                            <li><button class="dropdown-item text-danger" onclick="DeleteSheet('${responseData.response[i].sheetid}')">Delete</button></li>
                         </ul>
                     </div>
                 </div>
@@ -129,8 +130,10 @@ async function New()
     getTables();
 }
 
-async function DeleteSheet()
-{}
+async function DeleteSheet(sheetId)
+{
+    console.log("Deleting sheet id: " + sheetId);
+}
 
 console.log(window.location.pathname);
 

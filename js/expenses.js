@@ -9,6 +9,7 @@ const toastBody = document.getElementById("ToastBody");
 const toastDetail = document.getElementById("ToastDetail");
 
 const mainContent = document.getElementById("MainContent");
+const spinner = document.getElementById("spinner");
 
 var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
@@ -18,6 +19,18 @@ function toast(header, detail, body)
     toastBody.innerHTML = body;
     toastDetail.textContent = detail;
     liveToast.show();
+}
+
+function loading(isLoading)
+{
+    if (isLoading)
+    {
+        spinner.style.display = "inline-block";
+    }
+    else
+    {
+        spinner.style.display = "none";
+    }
 }
 
 async function Authenticate()
@@ -68,6 +81,8 @@ async function getTables()
     });
     let responseData = await response.json();
 
+    loading(false);
+
     mainContent.innerHTML = "";
     for (let i = 0; i < responseData.response.length; i++)
     {
@@ -101,10 +116,17 @@ async function getTables()
                     </div>
                 </div>
             </div>
-        `
+        `;
     }
 
-    // Add message to display when user has no tables
+    if (responseData.response.length == 0)
+    {
+        mainContent.innerHTML += `
+            <div class="" style="width: 350px; height: 10%; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; margin: auto; z-index: 0;" role="status">
+                <h3>You do not have any sheets<br>Start by creating new</h3>
+            </div>
+        `;
+    }
 }
 
 function LogOut()

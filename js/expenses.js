@@ -1,3 +1,5 @@
+const date = new Date();
+
 const htmlBody = document.getElementById("htmlBody");
 const DarkThemeIcon = document.getElementById("DarkThemeIcon");
 const LightThemeIcon = document.getElementById("LightThemeIcon");
@@ -57,8 +59,6 @@ async function Authenticate()
             userInfo.userName = responseData.userName;
             localStorage.setItem("userInfo", JSON.stringify(userInfo));
             document.getElementById("AccountDropdown").innerText = responseData.userName;
-
-            toast("Expenses", "Successful Authentication", `Succesfully logged in as<br><span style = "color: #3987fd;">${responseData.userName} [${userInfo.email}]</span>`);
         }
         else
         {
@@ -169,6 +169,10 @@ async function GetTransactions()
 console.log(window.location.pathname);
 Authenticate();
 getTables();
+console.log(date);
+
+selectedYear.value = date.getFullYear() % 2020; // due to the way year options are currently indexed
+selectedMonth.value = date.getMonth();
 
 function ChangeYM(change)
 {

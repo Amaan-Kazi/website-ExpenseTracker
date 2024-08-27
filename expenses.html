@@ -17,7 +17,7 @@
 
     <body id = "htmlBody" data-bs-theme="dark" style="height: 100%;">
         <div id = "Header" class = "fixed-top">
-            <nav class="navbar navbar-expand-lg shadow border-primary-subtle border-bottom border-3" style = "background-color: #4e73df;" data-bs-theme="dark"> <!--Try bg-secondary-subtle for light and js to switch to darker for dark-->
+            <nav class="navbar navbar-expand-lg shadow border-primary-subtle border-bottom border-3" style = "background-color: #4e73df;" data-bs-theme="dark">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Expense Tracker</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,20 +58,16 @@
                                 <li><button class="dropdown-item text-danger" onclick="LogOut()">Log Out</button></li>
                             </ul>
                         </div>
-
-                        <!--<button class="btn border-white" type="submit">Login</button>-->
                     </div>
                 </div>
             </nav>
             <div class = "container-fluid bg-secondary-subtle" style="padding: 5px;"> <!--display: flex; flex-direction: column; justify-content: center;">-->
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <nav class = "collapse navbar-collapse" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                        <ol class="breadcrumb" style="margin: 0;">
-                            <li class="breadcrumb-item active">Expenses</li>
-                            <li class="breadcrumb-item active" aria-current="page">Library</li>
-                        </ol>
-                    </nav>
-
+                    <button class = "btn" style="margin: 0px; padding: 0px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                            <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
+                        </svg>
+                    </button>
                     <div style = "display: flex;">
                         <button class="btn" style="margin-right: 5px; padding-left: 0px; padding-right: 0px;" onclick = "ChangeYM(-1)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
@@ -83,7 +79,7 @@
                             <option value="1">2021</option>
                             <option value="2">2022</option>
                             <option value="3">2023</option>
-                            <option value="4" selected>2024</option>
+                            <option value="4">2024</option>
                             <option value="5">2025</option>
                             <option value="6">2026</option>
                             <option value="7">2027</option>
@@ -98,7 +94,7 @@
                             <option value="4">May</option>
                             <option value="5">June</option>
                             <option value="6">July</option>
-                            <option value="7" selected>August</option>
+                            <option value="7">August</option>
                             <option value="8">September</option>
                             <option value="9">Ocober</option>
                             <option value="10">November</option>
@@ -111,7 +107,7 @@
                         </button>
                     </div>
 
-                    <button class="btn btn-outline-primary btn-sm" style="padding-right: 15px; padding-left: 15px;" onclick="New()">New</button>
+                    <button class = "btn btn-outline-primary" style = "padding-right: 10px; padding-left: 10px;" onclick="New()">New</button>
                 </div>
             </div>
         </div>

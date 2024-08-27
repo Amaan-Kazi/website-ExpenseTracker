@@ -65,12 +65,52 @@
             </nav>
             <div class = "container-fluid bg-secondary-subtle" style="padding: 5px;"> <!--display: flex; flex-direction: column; justify-content: center;">-->
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <nav class = "collapse navbar-collapse" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                         <ol class="breadcrumb" style="margin: 0;">
                             <li class="breadcrumb-item active">Expenses</li>
-                            <!--<li class="breadcrumb-item active" aria-current="page">Library</li>-->
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
                         </ol>
                     </nav>
+
+                    <div style = "display: flex;">
+                        <button class="btn" style="margin-right: 5px; padding-left: 0px; padding-right: 0px;" onclick = "ChangeYM(-1)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                            </svg>
+                        </button>
+                        <select id = "Year" class="form-select" style="width: 90px; margin-right: 10px;" onchange = "GetTransactions()" aria-label="Year">
+                            <option value="0">2020</option>
+                            <option value="1">2021</option>
+                            <option value="2">2022</option>
+                            <option value="3">2023</option>
+                            <option value="4" selected>2024</option>
+                            <option value="5">2025</option>
+                            <option value="6">2026</option>
+                            <option value="7">2027</option>
+                            <option value="8">2028</option>
+                            <option value="9">2029</option>
+                        </select>
+                        <select id = "Month" class="form-select" style="width: 130px;" onchange = "GetTransactions()" aria-label="Month">
+                            <option value="0">January</option>
+                            <option value="1">February</option>
+                            <option value="2">March</option>
+                            <option value="3">April</option>
+                            <option value="4">May</option>
+                            <option value="5">June</option>
+                            <option value="6">July</option>
+                            <option value="7" selected>August</option>
+                            <option value="8">September</option>
+                            <option value="9">Ocober</option>
+                            <option value="10">November</option>
+                            <option value="11">December</option>
+                        </select>
+                        <button class = "btn" style="margin-left: 5px; padding-left: 0px; padding-right: 0px;" onclick = "ChangeYM(1)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                            </svg>
+                        </button>
+                    </div>
+
                     <button class="btn btn-outline-primary btn-sm" style="padding-right: 15px; padding-left: 15px;" onclick="New()">New</button>
                 </div>
             </div>

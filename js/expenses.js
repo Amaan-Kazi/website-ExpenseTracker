@@ -13,6 +13,9 @@ const spinner = document.getElementById("spinner");
 
 var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
+const selectedYear = document.getElementById("Year");
+const selectedMonth = document.getElementById("Month");
+
 function toast(header, detail, body)
 {
     toastHeader.textContent = header;
@@ -123,7 +126,7 @@ async function getTables()
     {
         mainContent.innerHTML += `
             <div class="" style="width: 350px; height: 10%; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; margin: auto; z-index: 0;" role="status">
-                <h3>You do not have any sheets<br>Start by creating new</h3>
+                <h3>You do not have any sheets<br>Start by creating new<br>Or join others</h3>
             </div>
         `;
     }
@@ -157,10 +160,44 @@ async function DeleteSheet(sheetId)
     console.log("Deleting sheet id: " + sheetId);
 }
 
-console.log(window.location.pathname);
+async function GetTransactions()
+{
+    console.log("Year: " + selectedYear.options[selectedYear.selectedIndex].text);
+    console.log("Month: " + selectedMonth.options[selectedMonth.selectedIndex].text);
+}
 
+console.log(window.location.pathname);
 Authenticate();
 getTables();
+
+function ChangeYM(change)
+{
+    let currentYear = selectedYear.selectedIndex;
+    let currentMonth = selectedMonth.selectedIndex + change;
+
+    if (currentMonth >= 12)
+    {
+        currentMonth = 0;
+        currentYear++;
+    }
+    else if (currentMonth <= -1)
+    {
+        currentMonth = 11;
+        currentYear--;
+    }
+
+    if (currentYear >= 10)
+    {
+        currentYear = 0;
+    }
+    else if (currentYear <= -1)
+    {
+        currentYear = 9;
+    }
+
+    selectedMonth.value = currentMonth;
+    selectedYear.value = currentYear;
+}
 
 function ToggleTheme()
 {

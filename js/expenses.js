@@ -73,8 +73,6 @@ async function Authenticate()
     {
         window.location.href = "./login.html";
     }
-
-    return "Function Ran";
 }
 
 async function getTables()
@@ -96,8 +94,6 @@ async function getTables()
     for (let i = 0; i < responseData.response.length; i++)
     {
         sheets[i] = responseData.response[i].sheetid;
-        console.log(sheets[i]);
-        console.log(responseData.response[i].sheetid);
         let membersList = "<ul>";
 
         for (let j = 0; j < responseData.response[i].sheetusers.length; j++)
@@ -139,8 +135,6 @@ async function getTables()
             </div>
         `;
     }
-
-    return "Function Ran";
 }
 
 function LogOut()
@@ -177,11 +171,13 @@ async function GetTransactions()
     console.log("Month: " + selectedMonth.options[selectedMonth.selectedIndex].text);
 }
 
-await Authenticate();
-await getTables();
+Authenticate();
+getTables();
 
 url = window.location.search.slice(1).split("/");
 console.log(url);
+console.log(sheets);
+console.log(url[0]);
 
 if ((url[0] != null) && (url[0] != ""))
 {

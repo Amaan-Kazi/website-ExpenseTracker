@@ -188,11 +188,13 @@ if ((url[0] != null) && (url[0] != ""))
     }
     else
     {
+        console.log("Sheet not found");
         sheetsView.hidden = false;
     }
 }
 else
 {
+    console.log("Sheet not provided");
     sheetsView.hidden = false;
 }
 

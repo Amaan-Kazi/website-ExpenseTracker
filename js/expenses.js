@@ -10,13 +10,17 @@ const toastHeader = document.getElementById("ToastHeader");
 const toastBody = document.getElementById("ToastBody");
 const toastDetail = document.getElementById("ToastDetail");
 
-const mainContent = document.getElementById("MainContent");
+const sheetsView = document.getElementById("SheetsView");
+const transactionsView = document.getElementById("TransactionsView");
 const spinner = document.getElementById("spinner");
 
 var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
 const selectedYear = document.getElementById("Year");
 const selectedMonth = document.getElementById("Month");
+
+var sheets = [];
+var url = [];
 
 function toast(header, detail, body)
 {
@@ -86,9 +90,10 @@ async function getTables()
 
     loading(false);
 
-    mainContent.innerHTML = "";
+    sheetsView.innerHTML = "";
     for (let i = 0; i < responseData.response.length; i++)
     {
+        sheets[i] = responseData.response[i].sheetid;
         let membersList = "<ul>";
 
         for (let j = 0; j < responseData.response[i].sheetusers.length; j++)
@@ -97,7 +102,7 @@ async function getTables()
         }
         membersList += "</ul>";
 
-        mainContent.innerHTML += `
+        sheetsView.innerHTML += `
             <div class="card" style="width: 30rem;" data-id = "${responseData.response[i].sheetid}">
                 <div class="card-body">
                     <h5 class="card-title text-info fs-1">${responseData.response[i].sheetname}</h5>
@@ -124,7 +129,7 @@ async function getTables()
 
     if (responseData.response.length == 0)
     {
-        mainContent.innerHTML += `
+        sheetsView.innerHTML += `
             <div class="" style="width: 350px; height: 10%; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; margin: auto; z-index: 0;" role="status">
                 <h3>You do not have any sheets<br>Start by creating new<br>Or join others</h3>
             </div>
@@ -166,9 +171,31 @@ async function GetTransactions()
     console.log("Month: " + selectedMonth.options[selectedMonth.selectedIndex].text);
 }
 
-console.log(window.location.pathname);
 Authenticate();
 getTables();
+
+url = window.location.search.slice(1).split("/");
+console.log(url);
+
+if ((url[0] != null) && (url[0] != ""))
+{
+    if (sheets.includes(url[0]))
+    {
+        console.log("Sheet found");
+        // get transactions for that sheet
+        // show transactions view, hide sheets view
+        transactionsView.hidden = false;
+    }
+    else
+    {
+        sheetsView.hidden = false;
+    }
+}
+else
+{
+    sheetsView.hidden = false;
+}
+
 console.log(date);
 
 selectedYear.value = date.getFullYear() % 2020; // due to the way year options are currently indexed

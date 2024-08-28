@@ -94,6 +94,8 @@ async function getTables()
     for (let i = 0; i < responseData.response.length; i++)
     {
         sheets[i] = responseData.response[i].sheetid;
+        console.log(sheets[i]);
+        console.log(responseData.response[i].sheetid);
         let membersList = "<ul>";
 
         for (let j = 0; j < responseData.response[i].sheetusers.length; j++)

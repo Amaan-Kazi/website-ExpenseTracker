@@ -73,6 +73,8 @@ async function Authenticate()
     {
         window.location.href = "./login.html";
     }
+
+    return "Function Ran";
 }
 
 async function getTables()
@@ -137,6 +139,8 @@ async function getTables()
             </div>
         `;
     }
+
+    return "Function Ran";
 }
 
 function LogOut()
@@ -173,8 +177,8 @@ async function GetTransactions()
     console.log("Month: " + selectedMonth.options[selectedMonth.selectedIndex].text);
 }
 
-Authenticate();
-getTables();
+await Authenticate();
+await getTables();
 
 url = window.location.search.slice(1).split("/");
 console.log(url);

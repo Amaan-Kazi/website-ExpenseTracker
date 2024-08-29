@@ -4,8 +4,6 @@ const htmlBody = document.getElementById("htmlBody");
 const DarkThemeIcon = document.getElementById("DarkThemeIcon");
 const LightThemeIcon = document.getElementById("LightThemeIcon");
 
-var liveToast = new bootstrap.Toast(document.getElementById("liveToast"));
-
 const toastHeader = document.getElementById("ToastHeader");
 const toastBody = document.getElementById("ToastBody");
 const toastDetail = document.getElementById("ToastDetail");
@@ -18,6 +16,9 @@ var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
 const selectedYear = document.getElementById("Year");
 const selectedMonth = document.getElementById("Month");
+
+var newSheetModal = new bootstrap.Modal(document.getElementById("NewSheetModal"));
+var liveToast = new bootstrap.Toast(document.getElementById("liveToast"));
 
 var sheets = [];
 var url = [];
@@ -147,7 +148,12 @@ function LogOut()
     window.location.href = "./login.html";
 }
 
-async function New()
+function New()
+{
+    newSheetModal.show();
+}
+
+async function NewSheet()
 {
     let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${userInfo.email}/create-table`, {
         method: "POST",
@@ -156,7 +162,7 @@ async function New()
         },
         body: JSON.stringify({
             password: userInfo.password,
-            tableName: "test"
+            tableName: document.getElementById("newSheetName").value
         })
     });
     let responseData = await response.json();
@@ -181,9 +187,6 @@ async function load()
     await getTables();
 
     url = window.location.search.slice(1).split("/");
-    console.log(url);
-    console.log(sheets);
-    console.log(url[0]);
 
     if ((url[0] != null) && (url[0] != ""))
     {

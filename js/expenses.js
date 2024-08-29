@@ -73,6 +73,8 @@ async function Authenticate()
     {
         window.location.href = "./login.html";
     }
+
+    return "Completed";
 }
 
 async function getTables()
@@ -135,6 +137,8 @@ async function getTables()
             </div>
         `;
     }
+
+    return "Completed";
 }
 
 function LogOut()
@@ -171,36 +175,40 @@ async function GetTransactions()
     console.log("Month: " + selectedMonth.options[selectedMonth.selectedIndex].text);
 }
 
-Authenticate();
-getTables();
-
-url = window.location.search.slice(1).split("/");
-console.log(url);
-console.log(sheets);
-console.log(url[0]);
-
-if ((url[0] != null) && (url[0] != ""))
+async function load()
 {
-    if (sheets.includes(url[0]))
+    await Authenticate();
+    await getTables();
+
+    url = window.location.search.slice(1).split("/");
+    console.log(url);
+    console.log(sheets);
+    console.log(url[0]);
+
+    if ((url[0] != null) && (url[0] != ""))
     {
-        console.log("Sheet found");
-        // get transactions for that sheet
-        // show transactions view, hide sheets view
-        transactionsView.hidden = false;
+        if (sheets.includes(url[0])) // fix me
+        {
+            console.log("Sheet found");
+            // get transactions for that sheet
+            // show transactions view, hide sheets view
+            transactionsView.hidden = false;
+        }
+        else
+        {
+            console.log("Sheet not found");
+            sheetsView.hidden = false;
+        }
     }
     else
     {
-        console.log("Sheet not found");
+        console.log("Sheet not provided");
         sheetsView.hidden = false;
     }
 }
-else
-{
-    console.log("Sheet not provided");
-    sheetsView.hidden = false;
-}
 
 console.log(date);
+load();
 
 selectedYear.value = date.getFullYear() % 2020; // due to the way year options are currently indexed
 selectedMonth.value = date.getMonth();

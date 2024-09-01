@@ -18,6 +18,7 @@ const selectedYear = document.getElementById("Year");
 const selectedMonth = document.getElementById("Month");
 
 var newSheetModal = new bootstrap.Modal(document.getElementById("NewSheetModal"));
+var newTransactionModal = new bootstrap.Modal(document.getElementById("NewTransactionModal"));
 var liveToast = new bootstrap.Toast(document.getElementById("liveToast"));
 
 var sheets = [];
@@ -150,7 +151,14 @@ function LogOut()
 
 function New()
 {
-    newSheetModal.show();
+    if (document.getElementById("NewButton").getAttribute("data-new") == "Transaction")
+    {
+        newTransactionModal.show();
+    }
+    else
+    {
+        newSheetModal.show();
+    }
 }
 
 async function NewSheet()
@@ -166,8 +174,27 @@ async function NewSheet()
         })
     });
     let responseData = await response.json();
-    console.log(responseData);
+    newSheetModal.hide();
+
+    if (responseData.status == "SUCCESSFUL")
+    {
+        toast("Expenses", "SUCCESSFUL", "Created new table");
+    }
+    else if (responseData.status == "ERROR")
+    {
+        toast("Expenses", "ERROR", responseData.error);
+    }
+    else
+    {
+        toast("Expenses", "SERVER ERROR", "SERVER ERROR");
+    }
+
     getTables();
+}
+
+async function NewTransaction()
+{
+    console.log("Creating new transaction");
 }
 
 async function DeleteSheet(sheetId)

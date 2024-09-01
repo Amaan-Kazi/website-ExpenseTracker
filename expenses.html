@@ -107,7 +107,7 @@
                         </button>
                     </div>
 
-                    <button class = "btn btn-outline-primary" style = "padding-right: 10px; padding-left: 10px;" onclick="New()">New</button>
+                    <button id = "NewButton" class = "btn btn-outline-primary" style = "padding-right: 10px; padding-left: 10px;" onclick="New()" data-new = "Sheet">New</button>
                 </div>
             </div>
         </div>
@@ -183,6 +183,83 @@
 
         <div hidden id = "TransactionsView" class = "container-fluid">
             <h1>Transactions View</h1>
+
+            <div id = "NewTransactionModal" class="modal fade" tabindex="-1" data-bs-backdrop = "static" data-bs-keyboard = "false">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">New Transaction</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Transaction Details:
+
+                            <form>
+                                <div class = "input-group mb-3">
+                                    <div class = "form-floating" style = "max-width: 17.5%;">
+                                        <input id = "newTransactionDate" type = "number" min = "1" max = "31" class="form-control" aria-label = "Date (2 digit)" placeholder = "Transaction Date">
+                                        <label for = "newTransactionDate" class="form-label">Date</label>
+                                    </div>
+
+                                    <div class = "form-floating">
+                                        <input id = "newTransactionName" type = "text" maxlength = "16" class = "form-control" aria-label = "TransactionName" placeholder = "Transaction Name">
+                                        <label for = "newTransactionName" class="form-label">Transaction Name</label>
+                                    </div>
+
+                                    <div class = "form-floating" style = "max-width: 25%;">
+                                        <input id = "newTransactionAmount" type = "number" class = "form-control" aria-label = "Amount" placeholder = "Transaction Amount">
+                                        <label for = "newTransactionAmount" class="form-label">Amount</label>
+                                    </div>
+                                </div>
+
+                                <div class = "input-group mb-3">
+                                    <div class = "form-floating">
+                                        <select class = "form-select" id = "newTransactionCategory">
+                                            <option value = "0" selected>Grocery</option>
+                                            <option value = "1">Shopping</option>
+                                            <option value = "2">Food</option>
+                                            <option value = "3">Ration</option>
+                                            <option value = "4">Travel</option>
+                                            <option value = "5">Stationary</option>
+                                            <option value = "6">Print</option>
+                                            <option value = "7">Health</option>
+                                            <option value = "8">Service</option>
+                                            <option value = "9">Miscellaneous</option>
+                                        </select>
+
+                                        <label for = "newTransactionCategory" class = "form-label">Category</label>
+                                    </div>
+
+                                    <div class = "form-floating">
+                                        <select class = "form-select" id = "newTransactionMode">
+                                            <option value = "0" selected>Cash</option>
+                                            <option value = "1">UPI</option>
+                                            <option value = "2">Bank Transfer</option>
+                                        </select>
+
+                                        <label for = "newTransactionMode" class = "form-label">Mode</label>
+                                    </div>
+                                </div>
+
+                                <div class = "form-floating mb-3">
+                                    <input id = "newTransactionDescription" type = "text" maxlength = "32" class = "form-control" aria-label = "TransactionDescription" placeholder = "Transaction Description">
+                                    <label for = "newTransactionDescription" class="form-label">Description</label>
+                                </div>
+
+                                <div class = "form-floating mb-3">
+                                    <input id = "newTransactionComment" type = "text" maxlength = "32" class = "form-control" aria-label = "TransactionComment" placeholder = "Transaction Comment">
+                                    <label for = "newTransactionComment" class="form-label">Comment</label>
+                                </div>
+                            </form>
+
+                            <!--<input type="text" id = "newSheetName" maxlength="20" style = "text-align: center; margin-top: 20px;" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">-->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick = "NewTransaction()">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id = "spinner" class="spinner-border" style="width: 5rem; height: 5rem; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; margin: auto; z-index: 0;" role="status">

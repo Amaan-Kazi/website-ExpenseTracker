@@ -220,9 +220,12 @@ async function load()
         if ((url[1] != null) && (url[1] != ""))
         {
             let urlYear = parseInt(url[1]) % 2020;
-            if (urlYear == "NaN")
+            if (isNaN(urlYear) == false)
             {
-                if (urlYear > 9) urlYear = 9;
+                if (urlYear > 9)
+                {
+                    urlYear = 9;
+                }
                 selectedYear.value = urlYear;
             }
             else
@@ -274,7 +277,10 @@ async function load()
         else
         {
             let yearIndex = date.getFullYear() % 2020; // due to the way year options are currently indexed
-            if (yearIndex > 9) yearIndex = 9;
+            if (yearIndex > 9)
+            {
+                yearIndex = 9;
+            }
 
             selectedYear.value = yearIndex;
             selectedMonth.value = date.getMonth();

@@ -20,6 +20,13 @@ var currentView = "Sheets";
 var sheets = [];
 var url = [];
 
+// TODO //
+// Create transaction endpoint
+// Make the back/home button have a use by going back to sheets from transactions, and home from sheets
+// onclick of any sheet, load its transactions
+// use data tables library for transactions
+
+// Utility //
 function toast(header, detail, body)
 {
     document.getElementById("ToastHeader").textContent = header;
@@ -40,6 +47,20 @@ function loading(isLoading)
     }
 }
 
+function New()
+{
+    if (document.getElementById("NewButton").getAttribute("data-new") == "Transaction")
+    {
+        newTransactionModal.show();
+    }
+    else
+    {
+        newSheetModal.show();
+    }
+}
+
+
+// Account //
 async function Authenticate()
 {
     if (userInfo != null)
@@ -75,7 +96,15 @@ async function Authenticate()
     return "Completed";
 }
 
-async function getTables()
+function LogOut()
+{
+    localStorage.removeItem("userInfo");
+    window.location.href = "./login.html";
+}
+
+
+// Tables //
+async function GetSheets()
 {
     let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${userInfo.email}/get-tables`, {
         method: "POST",
@@ -139,24 +168,6 @@ async function getTables()
     return "Completed";
 }
 
-function LogOut()
-{
-    localStorage.removeItem("userInfo");
-    window.location.href = "./login.html";
-}
-
-function New()
-{
-    if (document.getElementById("NewButton").getAttribute("data-new") == "Transaction")
-    {
-        newTransactionModal.show();
-    }
-    else
-    {
-        newSheetModal.show();
-    }
-}
-
 async function NewSheet()
 {
     let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${userInfo.email}/create-table`, {
@@ -185,12 +196,7 @@ async function NewSheet()
         toast("Expenses", "SERVER ERROR", "SERVER ERROR");
     }
 
-    getTables();
-}
-
-async function NewTransaction()
-{
-    console.log("Creating new transaction");
+    GetSheets();
 }
 
 async function DeleteSheet(sheetId)
@@ -198,16 +204,24 @@ async function DeleteSheet(sheetId)
     console.log("Deleting sheet id: " + sheetId);
 }
 
+
+// Transactions //
 async function GetTransactions()
 {
     console.log("Year: " + selectedYear.options[selectedYear.selectedIndex].text);
     console.log("Month: " + selectedMonth.options[selectedMonth.selectedIndex].text);
 }
 
+async function NewTransaction()
+{
+    console.log("Creating new transaction");
+}
+
+
 async function load()
 {
     await Authenticate();
-    await getTables();
+    await GetSheets();
 
     url = window.location.search.slice(1).split("/");
 
@@ -216,6 +230,7 @@ async function load()
         currentView = "Transactions";
         document.getElementById("MonthYear").hidden = false;
         transactionsView.hidden = false;
+        document.getElementById("NewButton").setAttribute("data-new", "Transaction");
 
         if ((url[1] != null) && (url[1] != ""))
         {
@@ -230,7 +245,13 @@ async function load()
             }
             else
             {
-                selectedYear.value = 9;
+                let yearIndex = date.getFullYear() % 2020; // due to the way year options are currently indexed
+                if (yearIndex > 9)
+                {
+                    yearIndex = 9;
+                }
+
+                selectedYear.value = yearIndex;
             }
 
             if ((url[2] != null) && (url[2] != ""))
@@ -301,6 +322,7 @@ async function load()
 
         selectedYear.value = yearIndex;
         selectedMonth.value = date.getMonth();
+        document.getElementById("NewButton").setAttribute("data-new", "Sheet");
     }
 }
 

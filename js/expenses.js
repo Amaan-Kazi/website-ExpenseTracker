@@ -285,6 +285,8 @@ async function load()
             selectedYear.value = yearIndex;
             selectedMonth.value = date.getMonth();
         }
+
+        window.history.pushState({"Title": "Expenses"}, "", `https://expensetracker.rweb.site/expenses?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`)
     }
     else
     {
@@ -292,7 +294,10 @@ async function load()
         sheetsView.hidden = false;
 
         let yearIndex = date.getFullYear() % 2020; // due to the way year options are currently indexed
-        if (yearIndex > 9) yearIndex = 9;
+        if (yearIndex > 9) 
+        {
+            yearIndex = 9;
+        }
 
         selectedYear.value = yearIndex;
         selectedMonth.value = date.getMonth();

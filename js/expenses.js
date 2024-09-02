@@ -4,15 +4,9 @@ const htmlBody = document.getElementById("htmlBody");
 const DarkThemeIcon = document.getElementById("DarkThemeIcon");
 const LightThemeIcon = document.getElementById("LightThemeIcon");
 
-const toastHeader = document.getElementById("ToastHeader");
-const toastBody = document.getElementById("ToastBody");
-const toastDetail = document.getElementById("ToastDetail");
-
 const sheetsView = document.getElementById("SheetsView");
 const transactionsView = document.getElementById("TransactionsView");
 const spinner = document.getElementById("spinner");
-
-var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
 const selectedYear = document.getElementById("Year");
 const selectedMonth = document.getElementById("Month");
@@ -21,14 +15,16 @@ var newSheetModal = new bootstrap.Modal(document.getElementById("NewSheetModal")
 var newTransactionModal = new bootstrap.Modal(document.getElementById("NewTransactionModal"));
 var liveToast = new bootstrap.Toast(document.getElementById("liveToast"));
 
+var userInfo = JSON.parse(localStorage.getItem("userInfo"));
+var currentView = "Sheets";
 var sheets = [];
 var url = [];
 
 function toast(header, detail, body)
 {
-    toastHeader.textContent = header;
-    toastBody.innerHTML = body;
-    toastDetail.textContent = detail;
+    document.getElementById("ToastHeader").textContent = header;
+    document.getElementById("ToastBody").innerHTML = body;
+    document.getElementById("ToastDetail").textContent = detail;
     liveToast.show();
 }
 
@@ -215,33 +211,83 @@ async function load()
 
     url = window.location.search.slice(1).split("/");
 
-    if ((url[0] != null) && (url[0] != ""))
+    if ((url[0] != null) && (url[0] != "") && (sheets.includes(url[0])))
     {
-        if (sheets.includes(url[0])) // fix me
+        currentView = "Transactions";
+        document.getElementById("MonthYear").hidden = false;
+        transactionsView.hidden = false;
+
+        if ((url[1] != null) && (url[1] != ""))
         {
-            console.log("Sheet found");
-            // get transactions for that sheet
-            // show transactions view, hide sheets view
-            transactionsView.hidden = false;
+            let urlYear = parseInt(url[1]) % 2020;
+            if (urlYear > 9) urlYear = 9;
+            selectedYear.value = urlYear;
+
+            if ((url[2] != null) && (url[2] != ""))
+            {
+                function monthToIndex(month)
+                {
+                    switch (month.toLowerCase()) {
+                        case "january":
+                            return 0;
+                        case "february":
+                            return 1;
+                        case "march":
+                            return 2;
+                        case "april":
+                            return 3;
+                        case "may":
+                            return 4;
+                        case "june":
+                            return 5;
+                        case "july":
+                            return 6;
+                        case "august":
+                            return 7;
+                        case "september":
+                            return 8;
+                        case "october":
+                            return 9;
+                        case "november":
+                            return 10;
+                        case "december":
+                            return 11;
+                        default:
+                            return date.getMonth();
+                    }
+                }
+
+                selectedMonth.value = monthToIndex(url[2]);
+            }
+            else
+            {
+                selectedMonth.value = date.getMonth();
+            }
         }
         else
         {
-            console.log("Sheet not found");
-            sheetsView.hidden = false;
+            let yearIndex = date.getFullYear() % 2020; // due to the way year options are currently indexed
+            if (yearIndex > 9) yearIndex = 9;
+
+            selectedYear.value = yearIndex;
+            selectedMonth.value = date.getMonth();
         }
     }
     else
     {
-        console.log("Sheet not provided");
+        currentView = "Sheets";
         sheetsView.hidden = false;
+
+        let yearIndex = date.getFullYear() % 2020; // due to the way year options are currently indexed
+        if (yearIndex > 9) yearIndex = 9;
+
+        selectedYear.value = yearIndex;
+        selectedMonth.value = date.getMonth();
     }
 }
 
 console.log(date);
 load();
-
-selectedYear.value = date.getFullYear() % 2020; // due to the way year options are currently indexed
-selectedMonth.value = date.getMonth();
 
 function ChangeYM(change)
 {

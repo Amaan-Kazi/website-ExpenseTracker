@@ -220,8 +220,15 @@ async function load()
         if ((url[1] != null) && (url[1] != ""))
         {
             let urlYear = parseInt(url[1]) % 2020;
-            if (urlYear > 9) urlYear = 9;
-            selectedYear.value = urlYear;
+            if (urlYear == "NaN")
+            {
+                if (urlYear > 9) urlYear = 9;
+                selectedYear.value = urlYear;
+            }
+            else
+            {
+                selectedYear.value = 9;
+            }
 
             if ((url[2] != null) && (url[2] != ""))
             {

@@ -168,7 +168,7 @@ async function GetSheets()
         membersList += "</ul>";
 
         sheetsView.innerHTML += `
-            <div class="card" style="width: 30rem;" data-id = "${responseData.response[i].sheetid}" onclick = "SelectSheet(${responseData.response[i].sheetid})">
+            <div class="card" style="width: 30rem;" data-id = "${responseData.response[i].sheetid}" onclick = "SelectSheet("${responseData.response[i].sheetid}")">
                 <div class="card-body">
                     <h5 class="card-title text-info fs-1">${responseData.response[i].sheetname}</h5>
                     <h6 class="card-subtitle mb-2 text-body-secondary">${responseData.response[i].sheetid}</h6>
@@ -247,7 +247,7 @@ async function GetTransactions()
     loading(true);
     // get from server
     // display in data tables
-    
+
     console.log("Year: " + selectedYear.options[selectedYear.selectedIndex].text);
     console.log("Month: " + selectedMonth.options[selectedMonth.selectedIndex].text);
 

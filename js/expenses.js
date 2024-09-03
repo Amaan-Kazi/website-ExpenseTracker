@@ -17,6 +17,7 @@ var liveToast = new bootstrap.Toast(document.getElementById("liveToast"));
 
 var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 var currentView = "Sheets";
+var currentSheet;
 var sheets = [];
 var url = [];
 
@@ -57,6 +58,39 @@ function New()
     {
         newSheetModal.show();
     }
+}
+
+async function Back()
+{
+    if (currentView == "Transactions")
+    {
+        currentView = "Sheets";
+        transactionsView.hidden = true;
+        sheetsView.hidden = false;
+        document.getElementById("NewButton").setAttribute("data-new", "Sheet");
+        window.history.pushState({"Title": "Expense Tracker Sheets"}, "", `https://expensetracker.rweb.site/expenses`);
+
+        // await GetSheets();
+    }
+    else
+    {
+        window.location.href("./index.html");
+    }
+}
+
+async function SelectSheet(selectedSheet)
+{
+    currentSheet = selectedSheet;
+    currentView = "Transactions";
+
+    document.getElementById("MonthYear").hidden = false;
+    document.getElementById("NewButton").setAttribute("data-new", "Transaction");
+
+    sheetsView.hidden = true;
+    transactionsView.hidden = false;
+
+    window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `https://expensetracker.rweb.site/expenses?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
+    await GetTransactions();
 }
 
 
@@ -106,6 +140,8 @@ function LogOut()
 // Tables //
 async function GetSheets()
 {
+    loading(true);
+
     let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${userInfo.email}/get-tables`, {
         method: "POST",
         headers: {
@@ -132,7 +168,7 @@ async function GetSheets()
         membersList += "</ul>";
 
         sheetsView.innerHTML += `
-            <div class="card" style="width: 30rem;" data-id = "${responseData.response[i].sheetid}">
+            <div class="card" style="width: 30rem;" data-id = "${responseData.response[i].sheetid}" onclick = "SelectSheet(${responseData.response[i].sheetid})">
                 <div class="card-body">
                     <h5 class="card-title text-info fs-1">${responseData.response[i].sheetname}</h5>
                     <h6 class="card-subtitle mb-2 text-body-secondary">${responseData.response[i].sheetid}</h6>
@@ -208,8 +244,14 @@ async function DeleteSheet(sheetId)
 // Transactions //
 async function GetTransactions()
 {
+    loading(true);
+    // get from server
+    // display in data tables
+    
     console.log("Year: " + selectedYear.options[selectedYear.selectedIndex].text);
     console.log("Month: " + selectedMonth.options[selectedMonth.selectedIndex].text);
+
+    loading(false);
 }
 
 async function NewTransaction()
@@ -228,9 +270,12 @@ async function load()
     if ((url[0] != null) && (url[0] != "") && (sheets.includes(url[0])))
     {
         currentView = "Transactions";
+        currentSheet = url[0];
+
         document.getElementById("MonthYear").hidden = false;
-        transactionsView.hidden = false;
         document.getElementById("NewButton").setAttribute("data-new", "Transaction");
+
+        transactionsView.hidden = false;
 
         if ((url[1] != null) && (url[1] != ""))
         {
@@ -307,7 +352,8 @@ async function load()
             selectedMonth.value = date.getMonth();
         }
 
-        window.history.pushState({"Title": "Expenses"}, "", `https://expensetracker.rweb.site/expenses?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`)
+        window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `https://expensetracker.rweb.site/expenses?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
+        await GetTransactions();
     }
     else
     {
@@ -323,6 +369,7 @@ async function load()
         selectedYear.value = yearIndex;
         selectedMonth.value = date.getMonth();
         document.getElementById("NewButton").setAttribute("data-new", "Sheet");
+        window.history.pushState({"Title": "Expense Tracker Sheets"}, "", `https://expensetracker.rweb.site/expenses`);
     }
 }
 
@@ -356,6 +403,9 @@ function ChangeYM(change)
 
     selectedMonth.value = currentMonth;
     selectedYear.value = currentYear;
+
+    window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `https://expensetracker.rweb.site/expenses?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
+    GetTransactions();
 }
 
 function ToggleTheme()

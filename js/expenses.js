@@ -68,7 +68,7 @@ async function Back()
         transactionsView.hidden = true;
         sheetsView.hidden = false;
         document.getElementById("NewButton").setAttribute("data-new", "Sheet");
-        window.history.pushState({"Title": "Expense Tracker Sheets"}, "", `https://expensetracker.rweb.site/expenses`);
+        window.history.replaceState({"Title": "Expense Tracker Sheets"}, "", `https://expensetracker.rweb.site/expenses`);
 
         // await GetSheets();
     }
@@ -89,7 +89,7 @@ async function SelectSheet(selectedSheet)
     sheetsView.hidden = true;
     transactionsView.hidden = false;
 
-    window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `https://expensetracker.rweb.site/expenses?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
+    window.history.replaceState({"Title": "Expense Tracker Transactions"}, "", `https://expensetracker.rweb.site/expenses?${currentSheet}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
     await GetTransactions();
 }
 
@@ -352,7 +352,7 @@ async function load()
             selectedMonth.value = date.getMonth();
         }
 
-        window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `https://expensetracker.rweb.site/expenses?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
+        window.history.replaceState({"Title": "Expense Tracker Transactions"}, "", `https://expensetracker.rweb.site/expenses?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
         await GetTransactions();
     }
     else
@@ -369,7 +369,7 @@ async function load()
         selectedYear.value = yearIndex;
         selectedMonth.value = date.getMonth();
         document.getElementById("NewButton").setAttribute("data-new", "Sheet");
-        window.history.pushState({"Title": "Expense Tracker Sheets"}, "", `https://expensetracker.rweb.site/expenses`);
+        window.history.replaceState({"Title": "Expense Tracker Sheets"}, "", `https://expensetracker.rweb.site/expenses`);
     }
 }
 
@@ -404,7 +404,7 @@ function ChangeYM(change)
     selectedMonth.value = currentMonth;
     selectedYear.value = currentYear;
 
-    window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `https://expensetracker.rweb.site/expenses?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
+    window.history.replaceState({"Title": "Expense Tracker Transactions"}, "", `https://expensetracker.rweb.site/expenses?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
     GetTransactions();
 }
 

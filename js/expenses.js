@@ -268,7 +268,7 @@ newTransactionForm.addEventListener("submit", async (event) => {
         },
         body: JSON.stringify({
             password:        userInfo.password,
-            transactionDate: `${selectedYear.options[selectedYear.selectedIndex].text}-${selectedMonth.options[selectedMonth.selectedIndex].value + 1}-${newTransactionForm.newTransactionDate.value}`,
+            transactionDate: `${selectedYear.options[selectedYear.selectedIndex].text}-${parseInt(selectedMonth.options[selectedMonth.selectedIndex].value) + 1}-${newTransactionForm.newTransactionDate.value}`,
             transaction:     newTransactionForm.newTransactionName.value,
             category:        newTransactionForm.newTransactionCategory.options[newTransactionForm.newTransactionCategory.selectedIndex].text,
             description:     newTransactionForm.newTransactionDescription.value,

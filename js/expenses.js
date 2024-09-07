@@ -268,13 +268,13 @@ newTransactionForm.addEventListener("submit", async (event) => {
         },
         body: JSON.stringify({
             password:        userInfo.password,
-            transactionDate: `${selectedYear.options[selectedYear.selectedIndex].text}-${selectedMonth.options[selectedMonth.selectedIndex].value + 1}-${newTransactionForm.newTransactionDate}`,
-            transaction:     newTransactionForm.newTransactionName,
+            transactionDate: `${selectedYear.options[selectedYear.selectedIndex].text}-${selectedMonth.options[selectedMonth.selectedIndex].value + 1}-${newTransactionForm.newTransactionDate.value}`,
+            transaction:     newTransactionForm.newTransactionName.value,
             category:        newTransactionForm.newTransactionCategory.options[newTransactionForm.newTransactionCategory.selectedIndex].text,
-            description:     newTransactionForm.newTransactionDescription,
+            description:     newTransactionForm.newTransactionDescription.value,
             paymentMode:     newTransactionForm.newTransactionMode.options[newTransactionForm.newTransactionMode.selectedIndex].text,
-            amount:          newTransactionForm.newTransactionAmount,
-            comments:        newTransactionForm.newTransactionComment
+            amount:          newTransactionForm.newTransactionAmount.value,
+            comments:        newTransactionForm.newTransactionComment.value
         })
     });
     let responseData = await response.json();

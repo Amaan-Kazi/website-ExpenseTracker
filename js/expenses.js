@@ -179,7 +179,7 @@ async function GetSheets()
                         Members:
                         ${membersList}
                     </p>
-                    <button type="button" class="btn btn-primary" style="width: 100%;" onclick = "SelectSheet('${responseData.response[i].sheetid}')">Transactions</button>
+                    <button type="button" class="btn btn-primary mb-3" style="width: 100%;" onclick = "SelectSheet('${responseData.response[i].sheetid}')">Transactions</button>
                     <div class="btn-group" style="width: 100%;">
                         <button type="button" class="btn btn-primary" style="width: 90%;">Dashboard</button>
                         <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
@@ -268,7 +268,7 @@ newTransactionForm.addEventListener("submit", async (event) => {
         },
         body: JSON.stringify({
             password:        userInfo.password,
-            transactionDate: newTransactionForm.newTransactionDate,
+            transactionDate: `${selectedYear.options[selectedYear.selectedIndex].text}-${selectedMonth.options[selectedMonth.selectedIndex].value + 1}-${newTransactionForm.newTransactionDate}`,
             transaction:     newTransactionForm.newTransactionName,
             category:        newTransactionForm.newTransactionCategory.options[newTransactionForm.newTransactionCategory.selectedIndex].text,
             description:     newTransactionForm.newTransactionDescription,

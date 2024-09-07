@@ -191,10 +191,8 @@
                             <h1 class="modal-title fs-5" id="exampleModalLabel">New Transaction</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-                            Transaction Details:
-
-                            <form>
+                        <form id = "NewTransactionForm">
+                            <div class="modal-body">
                                 <div class = "input-group mb-3">
                                     <div class = "form-floating" style = "max-width: 17.5%;">
                                         <input id = "newTransactionDate" type = "number" min = "1" max = "31" class="form-control" aria-label = "Date (2 digit)" placeholder = "Transaction Date">
@@ -250,13 +248,12 @@
                                     <input id = "newTransactionComment" type = "text" maxlength = "32" class = "form-control" aria-label = "TransactionComment" placeholder = "Transaction Comment">
                                     <label for = "newTransactionComment" class="form-label">Comment</label>
                                 </div>
-                            </form>
-
-                            <!--<input type="text" id = "newSheetName" maxlength="20" style = "text-align: center; margin-top: 20px;" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">-->
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick = "NewTransaction()">Create</button>
-                        </div>
+                            </div>
+                                
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Create</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -11,6 +11,8 @@ const spinner = document.getElementById("spinner");
 const selectedYear = document.getElementById("Year");
 const selectedMonth = document.getElementById("Month");
 
+const newTransactionForm = document.getElementById("NewTransactionForm");
+
 var newSheetModal = new bootstrap.Modal(document.getElementById("NewSheetModal"));
 var newTransactionModal = new bootstrap.Modal(document.getElementById("NewTransactionModal"));
 var liveToast = new bootstrap.Toast(document.getElementById("liveToast"));
@@ -169,7 +171,7 @@ async function GetSheets()
         membersList += "</ul>";
 
         sheetsView.innerHTML += `
-            <div class="card" style="width: 30rem;" data-id = "${responseData.response[i].sheetid}" onclick = "SelectSheet('${responseData.response[i].sheetid}')">
+            <div class="card" style="width: 30rem;" data-id = "${responseData.response[i].sheetid}">
                 <div class="card-body">
                     <h5 class="card-title text-info fs-1">${responseData.response[i].sheetname}</h5>
                     <h6 class="card-subtitle mb-2 text-body-secondary">${responseData.response[i].sheetid}</h6>
@@ -177,6 +179,7 @@ async function GetSheets()
                         Members:
                         ${membersList}
                     </p>
+                    <button type="button" class="btn btn-primary" style="width: 100%;" onclick = "SelectSheet('${responseData.response[i].sheetid}')">Transactions</button>
                     <div class="btn-group" style="width: 100%;">
                         <button type="button" class="btn btn-primary" style="width: 90%;">Dashboard</button>
                         <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
@@ -255,10 +258,41 @@ async function GetTransactions()
     loading(false);
 }
 
-async function NewTransaction()
-{
-    console.log("Creating new transaction");
-}
+newTransactionForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${userInfo.email}/${currentSheet}/create-transaction`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            password:        userInfo.password,
+            transactionDate: newTransactionForm.newTransactionDate,
+            transaction:     newTransactionForm.newTransactionName,
+            category:        newTransactionForm.newTransactionCategory.options[newTransactionForm.newTransactionCategory.selectedIndex].text,
+            description:     newTransactionForm.newTransactionDescription,
+            paymentMode:     newTransactionForm.newTransactionMode.options[newTransactionForm.newTransactionMode.selectedIndex].text,
+            amount:          newTransactionForm.newTransactionAmount,
+            comments:        newTransactionForm.newTransactionComment
+        })
+    });
+    let responseData = await response.json();
+    newTransactionModal.hide();
+
+    if (responseData.status == "SUCCESSFUL")
+    {
+        toast("Expenses", "SUCCESSFUL", "Created new table");
+    }
+    else if (responseData.status == "ERROR")
+    {
+        toast("Expenses", "ERROR", responseData.error);
+    }
+    else
+    {
+        toast("Expenses", "SERVER ERROR", "SERVER ERROR");
+    }
+});
 
 
 async function load()

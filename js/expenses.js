@@ -277,6 +277,15 @@ async function GetTransactions()
         new DataTable('#TransactionsTable', {
             responsive: true,
             rowReorder: true,
+
+            columns: [
+                {title: "transaction_date"},
+                {title: "transaction"},
+                {title: "category"},
+                {title: "payment_mode"},
+                {title: "amount"},
+            ],
+
             data: responseData.response,
         });
     }

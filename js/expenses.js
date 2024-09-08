@@ -252,10 +252,35 @@ async function GetTransactions()
     // get from server
     // display in data tables
 
-    console.log("Year: " + selectedYear.options[selectedYear.selectedIndex].text);
-    console.log("Month: " + selectedMonth.options[selectedMonth.selectedIndex].text);
+    // console.log("Year: " + selectedYear.options[selectedYear.selectedIndex].text);
+    // console.log("Month: " + selectedMonth.options[selectedMonth.selectedIndex].text);
 
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${userInfo.email}/${currentSheet}/get-transactions`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            password: userInfo.password,
+            year: selectedYear.options[selectedYear.selectedIndex].text,
+            month: parseInt(selectedMonth.options[selectedMonth.selectedIndex].value) + 1
+        })
+    });
+    let responseData = await response.json();
     loading(false);
+
+    if (responseData.status == "SUCCESSFUL")
+    {
+        console.log(responseData);
+    }
+    else if (responseData.status == "ERROR")
+    {
+        toast("Expenses", "ERROR", responseData.error);
+    }
+    else
+    {
+        toast("Expenses", "SERVER ERROR", "SERVER ERROR");
+    }
 }
 
 newTransactionForm.addEventListener("submit", async (event) => {
@@ -282,7 +307,7 @@ newTransactionForm.addEventListener("submit", async (event) => {
 
     if (responseData.status == "SUCCESSFUL")
     {
-        toast("Expenses", "SUCCESSFUL", "Created new table");
+        toast("Expenses", "SUCCESSFUL", "Created new transaction");
     }
     else if (responseData.status == "ERROR")
     {
@@ -292,6 +317,8 @@ newTransactionForm.addEventListener("submit", async (event) => {
     {
         toast("Expenses", "SERVER ERROR", "SERVER ERROR");
     }
+
+    GetTransactions();
 });
 
 

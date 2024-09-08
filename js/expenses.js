@@ -30,10 +30,6 @@ var url = [];
 // onclick of any sheet, load its transactions
 // use data tables library for transactions
 
-new DataTable('#TransactionsTable', {
-    responsive: true,
-    rowReorder: true
-});
 
 // Utility //
 function toast(header, detail, body)
@@ -277,6 +273,12 @@ async function GetTransactions()
     if (responseData.status == "SUCCESSFUL")
     {
         console.log(responseData);
+
+        new DataTable('#TransactionsTable', {
+            responsive: true,
+            rowReorder: true,
+            data: responseData.response,
+        });
     }
     else if (responseData.status == "ERROR")
     {

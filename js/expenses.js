@@ -274,6 +274,12 @@ async function GetTransactions()
     {
         console.log(responseData);
 
+        // Convert objects to arrays
+        for (let i = 0; i < responseData.response.length; i++)
+        {
+            responseData.response[i] = Object.values(responseData.response[i]);
+        }
+
         new DataTable('#TransactionsTable', {
             responsive: true,
             rowReorder: true,

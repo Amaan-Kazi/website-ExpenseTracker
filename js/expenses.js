@@ -34,6 +34,19 @@ var transactionsDataTable = new DataTable('#TransactionsTable', {
     responsive: true,
     rowReorder: true,
     colReorder: true,
+    select: true,
+
+    layout: {
+        topStart: {
+            buttons: ['copyHtml5', 'excelHtml5', 'csvHtml5', 'pdfHtml5']
+        },
+        bottomStart: {
+            info: true,
+            pageLength: {
+                menu: [10, 25, 50, 100]
+            }
+        }
+    },
 
     columns: [
         {title: "Transaction ID", visible: false},
@@ -41,7 +54,7 @@ var transactionsDataTable = new DataTable('#TransactionsTable', {
         {title: "Transaction"},
         {title: "Category"},
         {title: "Description"},
-        {title: "Payment Mode"},
+        {title: "Mode"},
         {title: "Amount"},
         {title: "Comments", visible: false},
         {title: "Timestamp", visible: false},
@@ -49,8 +62,13 @@ var transactionsDataTable = new DataTable('#TransactionsTable', {
     ],
 
     colReorder: {
-        order: [0, 1, 2, 3, 5, 6, 4, 7, 9, 8]
+        order: [0, 1, 2, 3, 5, 4, 6, 7, 9, 8]
     },
+});
+
+$('#TransactionsTable tbody').on('click', 'tr', function () {
+    var data = transactionsDataTable.row(this).data();
+    console.log(data);
 });
 
 // Utility //
@@ -94,7 +112,7 @@ async function Back()
         transactionsView.hidden = true;
         sheetsView.hidden = false;
         document.getElementById("NewButton").setAttribute("data-new", "Sheet");
-        window.history.pushState({"Title": "Expense Tracker Sheets"}, "", `./expenses`);
+        window.history.pushState({"Title": "Expense Tracker Sheets"}, "", `./expenses.html`);
 
         // await GetSheets();
     }
@@ -115,7 +133,7 @@ async function SelectSheet(selectedSheet)
     sheetsView.hidden = true;
     transactionsView.hidden = false;
 
-    window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `./expenses?${currentSheet}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
+    window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `./expenses.html?${currentSheet}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
     await GetTransactions();
 }
 
@@ -304,8 +322,6 @@ async function GetTransactions()
 
         transactionsDataTable.rows.add(responseData.response).draw();
         loading(false);
-
-        transactionsDataTable.colReorder.order([0, 1, 2, 3, 5, 6, 4, 7, 9, 8])
     }
     else if (responseData.status == "ERROR")
     {
@@ -448,7 +464,7 @@ async function load()
             selectedMonth.value = date.getMonth();
         }
 
-        window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `./expenses?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
+        window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `./expenses.html?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
         await GetTransactions();
     }
     else
@@ -465,7 +481,7 @@ async function load()
         selectedYear.value = yearIndex;
         selectedMonth.value = date.getMonth();
         document.getElementById("NewButton").setAttribute("data-new", "Sheet");
-        window.history.pushState({"Title": "Expense Tracker Sheets"}, "", `./expenses`);
+        window.history.pushState({"Title": "Expense Tracker Sheets"}, "", `./expenses.html`);
     }
 }
 
@@ -500,7 +516,7 @@ function ChangeYM(change)
     selectedMonth.value = currentMonth;
     selectedYear.value = currentYear;
 
-    window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `./expenses?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
+    window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `./expenses.html?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
     GetTransactions();
 }
 

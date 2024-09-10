@@ -18,16 +18,16 @@ var newTransactionModal = new bootstrap.Modal(document.getElementById("NewTransa
 var transactionDetailsModal = new bootstrap.Modal(document.getElementById("TransactionDetailsModal"));
 var liveToast = new bootstrap.Toast(document.getElementById("liveToast"));
 
-let transactionDetailsDate = document.getElementById("TransactionDetailsDate")//.innerText = selectedDa
-let transactionDetailsTransactionID = document.getElementById("TransactionDetailsTransactionID")//.innerText = s
-let transactionDetailsTransaction =  document.getElementById("TransactionDetailsTransaction")//.innerText = sel
-let transactionDetailsCategory = document.getElementById("TransactionDetailsCategory")//.innerText = select
-let transactionDetailsMode = document.getElementById("TransactionDetailsMode")//.innerText = selectedDa
-let transactionDetailsDescription = document.getElementById("TransactionDetailsDescription")//.innerText = sel
-let transactionDetailsAmount = document.getElementById("TransactionDetailsAmount")//.innerText = selected
-let transactionDetailsComments = document.getElementById("TransactionDetailsComments")//.innerText = select
-let transactionDetailsAuthor = document.getElementById("TransactionDetailsAuthor")//.innerText = selected
-let transactionDetailsTimestamp = document.getElementById("TransactionDetailsTimestamp")//.innerText = selec
+let transactionDetailsDate = document.getElementById("TransactionDetailsDate");
+let transactionDetailsTransactionID = document.getElementById("TransactionDetailsTransactionID");
+let transactionDetailsTransaction =  document.getElementById("TransactionDetailsTransaction");
+let transactionDetailsCategory = document.getElementById("TransactionDetailsCategory");
+let transactionDetailsMode = document.getElementById("TransactionDetailsMode");
+let transactionDetailsDescription = document.getElementById("TransactionDetailsDescription");
+let transactionDetailsAmount = document.getElementById("TransactionDetailsAmount");
+let transactionDetailsComments = document.getElementById("TransactionDetailsComments");
+let transactionDetailsAuthor = document.getElementById("TransactionDetailsAuthor");
+let transactionDetailsTimestamp = document.getElementById("TransactionDetailsTimestamp");
 
 var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 var currentView = "Sheets";
@@ -139,6 +139,8 @@ async function Back()
         window.history.pushState({"Title": "Expense Tracker Sheets"}, "", `./expenses.html`);
 
         // await GetSheets();
+        await transactionsDataTable.clear().draw();
+        transactionsDataTable.columns.adjust().responsive.recalc();
     }
     else
     {
@@ -159,6 +161,7 @@ async function SelectSheet(selectedSheet)
 
     window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `./expenses.html?${currentSheet}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
     await GetTransactions();
+    transactionsDataTable.columns.adjust().responsive.recalc();
 }
 
 
@@ -314,11 +317,6 @@ async function DeleteSheet(sheetId)
 async function GetTransactions()
 {
     loading(true);
-    // get from server
-    // display in data tables
-
-    // console.log("Year: " + selectedYear.options[selectedYear.selectedIndex].text);
-    // console.log("Month: " + selectedMonth.options[selectedMonth.selectedIndex].text);
 
     let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${userInfo.email}/${currentSheet}/get-transactions`, {
         method: "POST",
@@ -344,7 +342,8 @@ async function GetTransactions()
             responseData.response[i] = Object.values(responseData.response[i]);
         }
 
-        transactionsDataTable.rows.add(responseData.response).draw();
+        await transactionsDataTable.rows.add(responseData.response).draw();
+        transactionsDataTable.columns.adjust().responsive.recalc();
         loading(false);
     }
     else if (responseData.status == "ERROR")

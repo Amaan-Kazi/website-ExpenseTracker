@@ -15,7 +15,19 @@ const newTransactionForm = document.getElementById("NewTransactionForm");
 
 var newSheetModal = new bootstrap.Modal(document.getElementById("NewSheetModal"));
 var newTransactionModal = new bootstrap.Modal(document.getElementById("NewTransactionModal"));
+var transactionDetailsModal = new bootstrap.Modal(document.getElementById("TransactionDetailsModal"));
 var liveToast = new bootstrap.Toast(document.getElementById("liveToast"));
+
+let transactionDetailsDate = document.getElementById("TransactionDetailsDate")//.innerText = selectedDa
+let transactionDetailsTransactionID = document.getElementById("TransactionDetailsTransactionID")//.innerText = s
+let transactionDetailsTransaction =  document.getElementById("TransactionDetailsTransaction")//.innerText = sel
+let transactionDetailsCategory = document.getElementById("TransactionDetailsCategory")//.innerText = select
+let transactionDetailsMode = document.getElementById("TransactionDetailsMode")//.innerText = selectedDa
+let transactionDetailsDescription = document.getElementById("TransactionDetailsDescription")//.innerText = sel
+let transactionDetailsAmount = document.getElementById("TransactionDetailsAmount")//.innerText = selected
+let transactionDetailsComments = document.getElementById("TransactionDetailsComments")//.innerText = select
+let transactionDetailsAuthor = document.getElementById("TransactionDetailsAuthor")//.innerText = selected
+let transactionDetailsTimestamp = document.getElementById("TransactionDetailsTimestamp")//.innerText = selec
 
 var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 var currentView = "Sheets";
@@ -34,7 +46,7 @@ var transactionsDataTable = new DataTable('#TransactionsTable', {
     responsive: true,
     rowReorder: true,
     colReorder: true,
-    select: true,
+    autoWidth: true,
 
     layout: {
         topStart: {
@@ -49,16 +61,16 @@ var transactionsDataTable = new DataTable('#TransactionsTable', {
     },
 
     columns: [
-        {title: "Transaction ID", visible: false},
-        {title: "Date"},
-        {title: "Transaction"},
-        {title: "Category"},
-        {title: "Description"},
-        {title: "Mode"},
-        {title: "Amount"},
-        {title: "Comments", visible: false},
-        {title: "Timestamp", visible: false},
-        {title: "Author", visible: false},
+        {title: "Transaction ID", responsivePriority: 7, visible: false},
+        {title: "Date", responsivePriority: 3},
+        {title: "Transaction", responsivePriority: 1},
+        {title: "Category", responsivePriority: 4},
+        {title: "Description", responsivePriority: 6},
+        {title: "Mode", responsivePriority: 5},
+        {title: "Amount", responsivePriority: 2},
+        {title: "Comments", responsivePriority: 7, visible: false},
+        {title: "Timestamp", responsivePriority: 7, visible: false},
+        {title: "Author", responsivePriority: 7, visible: false},
     ],
 
     colReorder: {
@@ -67,8 +79,20 @@ var transactionsDataTable = new DataTable('#TransactionsTable', {
 });
 
 $('#TransactionsTable tbody').on('click', 'tr', function () {
-    var data = transactionsDataTable.row(this).data();
-    console.log(data);
+    var selectedData = transactionsDataTable.row(this).data();
+
+    transactionDetailsDate.innerText          = selectedData[1];
+    transactionDetailsTransactionID.innerText = selectedData[0];
+    transactionDetailsTransaction.innerText   = selectedData[2];
+    transactionDetailsCategory.innerText      = selectedData[3];
+    transactionDetailsMode.innerText          = selectedData[5];
+    transactionDetailsDescription.innerText   = selectedData[4];
+    transactionDetailsAmount.innerText        = selectedData[6];
+    transactionDetailsComments.innerText      = selectedData[7];
+    transactionDetailsAuthor.innerText        = selectedData[9];
+    transactionDetailsTimestamp.innerText     = selectedData[8];
+
+    transactionDetailsModal.show();
 });
 
 // Utility //

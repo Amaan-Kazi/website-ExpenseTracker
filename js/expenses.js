@@ -18,16 +18,16 @@ var newTransactionModal = new bootstrap.Modal(document.getElementById("NewTransa
 var transactionDetailsModal = new bootstrap.Modal(document.getElementById("TransactionDetailsModal"));
 var liveToast = new bootstrap.Toast(document.getElementById("liveToast"));
 
-let transactionDetailsDate = document.getElementById("TransactionDetailsDate");
+let transactionDetailsDate          = document.getElementById("TransactionDetailsDate");
 let transactionDetailsTransactionID = document.getElementById("TransactionDetailsTransactionID");
-let transactionDetailsTransaction =  document.getElementById("TransactionDetailsTransaction");
-let transactionDetailsCategory = document.getElementById("TransactionDetailsCategory");
-let transactionDetailsMode = document.getElementById("TransactionDetailsMode");
-let transactionDetailsDescription = document.getElementById("TransactionDetailsDescription");
-let transactionDetailsAmount = document.getElementById("TransactionDetailsAmount");
-let transactionDetailsComments = document.getElementById("TransactionDetailsComments");
-let transactionDetailsAuthor = document.getElementById("TransactionDetailsAuthor");
-let transactionDetailsTimestamp = document.getElementById("TransactionDetailsTimestamp");
+let transactionDetailsTransaction   = document.getElementById("TransactionDetailsTransaction");
+let transactionDetailsCategory      = document.getElementById("TransactionDetailsCategory");
+let transactionDetailsMode          = document.getElementById("TransactionDetailsMode");
+let transactionDetailsDescription   = document.getElementById("TransactionDetailsDescription");
+let transactionDetailsAmount        = document.getElementById("TransactionDetailsAmount");
+let transactionDetailsComments      = document.getElementById("TransactionDetailsComments");
+let transactionDetailsAuthor        = document.getElementById("TransactionDetailsAuthor");
+let transactionDetailsTimestamp     = document.getElementById("TransactionDetailsTimestamp");
 
 var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 var currentView = "Sheets";
@@ -35,18 +35,16 @@ var currentSheet;
 var sheets = [];
 var url = [];
 
-// TODO //
-// Decide between history.replaceState and history.pushState
-// Create transaction endpoint
-// Make the back/home button have a use by going back to sheets from transactions, and home from sheets
-// onclick of any sheet, load its transactions
-// use data tables library for transactions
-
 var transactionsDataTable = new DataTable('#TransactionsTable', {
-    responsive: true,
+    responsive: {
+        details: {
+            type: "none"
+        }
+    },
     rowReorder: true,
     colReorder: true,
     autoWidth: true,
+    scrollX: true,
 
     layout: {
         topStart: {
@@ -135,6 +133,7 @@ async function Back()
         currentView = "Sheets";
         transactionsView.hidden = true;
         sheetsView.hidden = false;
+        document.getElementById("MonthYear").hidden = true;
         document.getElementById("NewButton").setAttribute("data-new", "Sheet");
         window.history.pushState({"Title": "Expense Tracker Sheets"}, "", `./expenses.html`);
 
@@ -239,7 +238,7 @@ async function GetSheets()
         membersList += "</ul>";
 
         sheetsView.innerHTML += `
-            <div class="card" style="width: 30rem;" data-id = "${responseData.response[i].sheetid}">
+            <div class="card shadow" style="width: 30rem;" data-id = "${responseData.response[i].sheetid}">
                 <div class="card-body">
                     <h5 class="card-title text-info fs-1">${responseData.response[i].sheetname}</h5>
                     <h6 class="card-subtitle mb-2 text-body-secondary">${responseData.response[i].sheetid}</h6>

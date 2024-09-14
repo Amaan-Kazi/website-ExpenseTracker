@@ -252,7 +252,7 @@ async function GetSheets()
                         <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="visually-hidden">Toggle Dropdown</span>
                         </button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu"> <!--To be removed-->
                             <li><a class="dropdown-item" href="#">Actions</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><button class="dropdown-item text-danger" onclick="DeleteSheet('${responseData.response[i].sheetid}')">Delete</button></li>
@@ -538,7 +538,7 @@ function ChangeYM(change)
     selectedMonth.value = currentMonth;
     selectedYear.value = currentYear;
 
-    window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `./expenses.html?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
+    window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `./expenses.html?${currentSheet}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
     GetTransactions();
 }
 

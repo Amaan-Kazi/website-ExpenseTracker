@@ -172,6 +172,8 @@
     --bs-form-valid-border-color: #75b798;
     --bs-form-invalid-color: #ea868f;
     --bs-form-invalid-border-color: #ea868f;
+
+    --bs-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
 }
 
 #SheetsView {
@@ -183,9 +185,4 @@
     align-items: flex-start;
     row-gap: 20px;
     column-gap: 20px;
-}
-
-/* Currently not being used */
-.shadowedCard {
-    box-shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15) !important;
 }

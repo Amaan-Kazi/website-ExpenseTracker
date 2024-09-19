@@ -123,30 +123,29 @@
                 <h5 class="offcanvas-title" id="offcanvasExampleLabel">Dashboard</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <hr>
+            <hr style="margin: 0px;">
             <div class="offcanvas-body">
-                <div class="dropdown mt-3">
-                    <h3>Sheet: </h3><br>
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        Dropdown button
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                <h3>Sheet</h3>
+                <select class="form-select" aria-label="Default select example">
+                    <option value="0">Selected Sheet Name</option>
+                    <option value="1">Sheet One</option>
+                    <option value="2">Sheet Two</option>
+                    <option value="3">Sheet Three</option>
+                </select>
+                <p class = "mt-1">id: {sheetId}</p>
 
-                    <hr>
+                <hr>
 
-                    <h3>Statistics</h3>
-                    <button class = "btn">Monthly</button> <br>
-                    <button class = "btn">Yearly</button>
+                <h3>Statistics</h3>
+                <button class = "btn">Overview</button> <br>
+                <button class = "btn">Monthly</button> <br>
+                <button class = "btn">Yearly</button>
 
-                    <hr>
+                <hr>
 
-                    <button class = "btn">Members</button> <br>
-                    <button class = "btn">Settings</button>
-                </div>
+                <h3>Settings</h3>
+                <button class = "btn">Members</button> <br>
+                <button class = "btn">Sheet Settings</button>
             </div>
         </div>
 

@@ -180,48 +180,60 @@
             </table>
             </div>
 
-            <div id = "TransactionDetailsModal" class="modal fade" tabindex="-1" data-bs-backdrop = "static" data-bs-keyboard = "false">
+            <div id = "TransactionDetailsModal" class="modal fade" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="TransactionDetailsModalTitle">Transaction Details</h1>
+                            <h1 class="modal-title fs-5 me-3" id="TransactionDetailsModalTitle">Transaction</h1>
+                            <ul class="nav nav-underline">
+                                <li class="nav-item">
+                                  <button class="nav-link active" aria-current="true" href="#" data-bs-toggle="tab" data-bs-target="#details">Details</a>
+                                </li>
+                                <li class="nav-item">
+                                  <button class="nav-link" href="#" data-bs-toggle="tab" data-bs-target="#info">Info</button>
+                                </li>
+                            </ul>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-                            <dl class="row">
+                        <div class="modal-body tab-content">
+                            <div class = "tab-pane fade show active" id = "details">
+                                <dl class="row">
+                                    <dt class="col-sm-4">Date</dt>
+                                    <dd class="col-sm-8" id = "TransactionDetailsDate">Date</dd>
+
+                                    <dt class="col-sm-4">Transaction</dt>
+                                    <dd class="col-sm-8" id = "TransactionDetailsTransaction">Transaction</dd>
+
+                                    <dt class="col-sm-4">Category</dt>
+                                    <dd class="col-sm-8" id = "TransactionDetailsCategory">Category</dd>
+
+                                    <dt class="col-sm-4">Mode</dt>
+                                    <dd class="col-sm-8" id = "TransactionDetailsMode">Mode</dd>
+
+                                    <dt class="col-sm-4">Description</dt>
+                                    <dd class="col-sm-8" id = "TransactionDetailsDescription">Description</dd>
+
+                                    <dt class="col-sm-4">Amount</dt>
+                                    <dd class="col-sm-8" id = "TransactionDetailsAmount">Amount</dd>
+
+                                    <dt class="col-sm-4">Comments</dt>
+                                    <dd class="col-sm-8" id = "TransactionDetailsComments">Comments</dd>
+                                </dl>
+                            </div>
+                            <div class = "tab-pane fade" id = "info">
                                 <dt class="col-sm-4">Transaction ID</dt>
                                 <dd class="col-sm-8" id = "TransactionDetailsTransactionID">Transaction ID</dd>
-
-                                <dt class="col-sm-4">Date</dt>
-                                <dd class="col-sm-8" id = "TransactionDetailsDate">Date</dd>
-
-                                <dt class="col-sm-4">Transaction</dt>
-                                <dd class="col-sm-8" id = "TransactionDetailsTransaction">Transaction</dd>
-
-                                <dt class="col-sm-4">Category</dt>
-                                <dd class="col-sm-8" id = "TransactionDetailsCategory">Category</dd>
-
-                                <dt class="col-sm-4">Mode</dt>
-                                <dd class="col-sm-8" id = "TransactionDetailsMode">Mode</dd>
-
-                                <dt class="col-sm-4">Description</dt>
-                                <dd class="col-sm-8" id = "TransactionDetailsDescription">Description</dd>
-
-                                <dt class="col-sm-4">Amount</dt>
-                                <dd class="col-sm-8" id = "TransactionDetailsAmount">Amount</dd>
-
-                                <dt class="col-sm-4">Comments</dt>
-                                <dd class="col-sm-8" id = "TransactionDetailsComments">Comments</dd>
 
                                 <dt class="col-sm-4">Author</dt>
                                 <dd class="col-sm-8" id = "TransactionDetailsAuthor">Author</dd>
 
                                 <dt class="col-sm-4">Timestamp</dt>
                                 <dd class="col-sm-8" id = "TransactionDetailsTimestamp">Timestamp</dd>
-                            </dl>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick = "NewSheet()">Create</button>
+                            <button type="button" class="btn btn-danger" onclick = "DeleteTransaction()">Delete</button>
+                            <button type="button" class="btn btn-primary" onclick = "UpdateTransaction()">Update</button>
                         </div>
                     </div>
                 </div>

@@ -13,6 +13,11 @@ const selectedMonth = document.getElementById("Month");
 
 const newTransactionForm = document.getElementById("NewTransactionForm");
 
+// TODO //
+// Update transactions
+// Delete Transactions
+// Improve more details modal when clicked on transaction
+
 var newSheetModal = new bootstrap.Modal(document.getElementById("NewSheetModal"));
 var newTransactionModal = new bootstrap.Modal(document.getElementById("NewTransactionModal"));
 var transactionDetailsModal = new bootstrap.Modal(document.getElementById("TransactionDetailsModal"));

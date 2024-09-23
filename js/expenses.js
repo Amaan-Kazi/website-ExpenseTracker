@@ -34,6 +34,9 @@ let transactionDetailsComments      = document.getElementById("TransactionDetail
 let transactionDetailsAuthor        = document.getElementById("TransactionDetailsAuthor");
 let transactionDetailsTimestamp     = document.getElementById("TransactionDetailsTimestamp");
 
+let updateTransactionButton = document.getElementById("updateTransactionButton");
+let deleteTransactionButton = document.getElementById("deleteTransactionButton");
+
 var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 var currentView = "Sheets";
 var currentSheet;
@@ -95,6 +98,8 @@ $('#TransactionsTable tbody').on('click', 'tr', function () {
     transactionDetailsAuthor.innerText        = selectedData[9];
     transactionDetailsTimestamp.innerText     = selectedData[8];
 
+    updateTransactionButton.setAttribute("data-transactionId", selectedData[0]);
+    deleteTransactionButton.setAttribute("data-transactionId", selectedData[0]);
     transactionDetailsModal.show();
 });
 
@@ -397,6 +402,38 @@ newTransactionForm.addEventListener("submit", async (event) => {
 
     GetTransactions();
 });
+
+async function DeleteTransaction()
+{
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${userInfo.email}/${currentSheet}/delete-transaction`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            password: userInfo.password,
+            sheetId: currentSheet,
+            transactionId: deleteTransactionButton.getAttribute("data-transactionId")
+        })
+    });
+    let responseData = await response.json();
+    transactionDetailsModal.hide();
+
+    if (responseData.status == "SUCCESSFUL")
+    {
+        toast("Expenses", "SUCCESSFUL", "Deleted Transaction");
+    }
+    else if (responseData.status == "ERROR")
+    {
+        toast("Expenses", "ERROR", responseData.error);
+    }
+    else
+    {
+        toast("Expenses", "SERVER ERROR", "SERVER ERROR");
+    }
+
+    GetTransactions();
+}
 
 
 async function load()

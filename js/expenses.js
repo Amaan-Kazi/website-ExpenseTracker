@@ -13,10 +13,15 @@ const selectedMonth = document.getElementById("Month");
 
 const newTransactionForm = document.getElementById("NewTransactionForm");
 
+window.addEventListener('popstate', function(event) {
+    // The popstate event is fired each time when the current history entry changes.
+    window.location.reload();
+}, false);
+
 // TODO //
 // Update transactions
-// Delete Transactions
-// Improve more details modal when clicked on transaction
+// Delete Transactions -- done
+// Improve more details modal when clicked on transaction -- dont but could be improved
 
 var newSheetModal = new bootstrap.Modal(document.getElementById("NewSheetModal"));
 var newTransactionModal = new bootstrap.Modal(document.getElementById("NewTransactionModal"));
@@ -157,6 +162,11 @@ async function Back()
     }
 }
 
+function Dashboard(id)
+{
+    window.location.href = "./dashboard.html?" + id;
+}
+
 async function SelectSheet(selectedSheet)
 {
     currentSheet = selectedSheet;
@@ -257,17 +267,7 @@ async function GetSheets()
                         ${membersList}
                     </p>
                     <button type="button" class="btn btn-primary mb-3" style="width: 100%;" onclick = "SelectSheet('${responseData.response[i].sheetid}')">Transactions</button>
-                    <div class="btn-group" style="width: 100%;">
-                        <button type="button" class="btn btn-primary" style="width: 90%;">Dashboard</button>
-                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu"> <!--To be removed-->
-                            <li><a class="dropdown-item" href="#">Actions</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><button class="dropdown-item text-danger" onclick="DeleteSheet('${responseData.response[i].sheetid}')">Delete</button></li>
-                        </ul>
-                    </div>
+                    <button type="button" class="btn btn-primary" style="width: 100%;" onclick = "Dashboard('${responseData.response[i].sheetid}')">Dashboard</button>
                 </div>
             </div>
         `;

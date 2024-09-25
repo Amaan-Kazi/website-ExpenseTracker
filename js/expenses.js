@@ -12,19 +12,16 @@ const selectedYear = document.getElementById("Year");
 const selectedMonth = document.getElementById("Month");
 
 const newTransactionForm = document.getElementById("NewTransactionForm");
+const updateTransactionForm = document.getElementById("UpdateTransactionForm");
 
 window.addEventListener('popstate', function(event) {
     // The popstate event is fired each time when the current history entry changes.
     window.location.reload();
 }, false);
 
-// TODO //
-// Update transactions
-// Delete Transactions -- done
-// Improve more details modal when clicked on transaction -- dont but could be improved
-
 var newSheetModal = new bootstrap.Modal(document.getElementById("NewSheetModal"));
 var newTransactionModal = new bootstrap.Modal(document.getElementById("NewTransactionModal"));
+var updateTransactionModal = new bootstrap.Modal(document.getElementById("UpdateTransactionModal"));
 var transactionDetailsModal = new bootstrap.Modal(document.getElementById("TransactionDetailsModal"));
 var liveToast = new bootstrap.Toast(document.getElementById("liveToast"));
 
@@ -365,6 +362,40 @@ async function GetTransactions()
     }
 }
 
+function UpdateTransaction()
+{
+    transactionDetailsModal.hide();
+    updateTransactionForm.updatedTransactionId.value = updateTransactionButton.getAttribute("data-transactionId");
+
+    let tDate = transactionDetailsDate.innerText.split("-");
+    console.log(tDate);
+    console.log(transactionDetailsCategory.innerText)
+
+    updateTransactionForm.updatedTransactionDate.value = tDate[2];
+    updateTransactionForm.updatedTransactionName.value = transactionDetailsTransaction.innerText;
+
+    for (let i = 0; i < updateTransactionForm.updatedTransactionCategory.options.length; i++) {
+        if (updateTransactionForm.updatedTransactionCategory.options[i].text === transactionDetailsCategory.innerText) {
+            updateTransactionForm.updatedTransactionCategory.selectedIndex = i;
+            break;
+        }
+    }
+
+    updateTransactionForm.updatedTransactionDescription.value = transactionDetailsDescription.innerText;
+
+    for (let i = 0; i < updateTransactionForm.updatedTransactionMode.options.length; i++) {
+        if (updateTransactionForm.updatedTransactionMode.options[i].text === transactionDetailsMode.innerText) {
+            updateTransactionForm.updatedTransactionMode.selectedIndex = i;
+            break;
+        }
+    }
+
+    updateTransactionForm.updatedTransactionAmount.value = transactionDetailsAmount.innerText;
+    updateTransactionForm.updatedTransactionComment.value = transactionDetailsComments.innerText;
+
+    updateTransactionModal.show();
+}
+
 newTransactionForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -389,7 +420,46 @@ newTransactionForm.addEventListener("submit", async (event) => {
 
     if (responseData.status == "SUCCESSFUL")
     {
-        toast("Expenses", "SUCCESSFUL", "Created new transaction");
+        toast("Expenses", "SUCCESSFUL", "Created Transaction");
+    }
+    else if (responseData.status == "ERROR")
+    {
+        toast("Expenses", "ERROR", responseData.error);
+    }
+    else
+    {
+        toast("Expenses", "SERVER ERROR", "SERVER ERROR");
+    }
+
+    GetTransactions();
+});
+
+updateTransactionForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    let response = await fetch(`https://amaankazi-expensetracker.onrender.com/${userInfo.email}/${currentSheet}/update-transaction`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            password:        userInfo.password,
+            transactionId:   updateTransactionForm.updatedTransactionId.value,
+            transactionDate: `${selectedYear.options[selectedYear.selectedIndex].text}-${parseInt(selectedMonth.options[selectedMonth.selectedIndex].value) + 1}-${updateTransactionForm.updatedTransactionDate.value}`,
+            transaction:     updateTransactionForm.updatedTransactionName.value,
+            category:        updateTransactionForm.updatedTransactionCategory.options[updateTransactionForm.updatedTransactionCategory.selectedIndex].text,
+            description:     updateTransactionForm.updatedTransactionDescription.value,
+            paymentMode:     updateTransactionForm.updatedTransactionMode.options[updateTransactionForm.updatedTransactionMode.selectedIndex].text,
+            amount:          updateTransactionForm.updatedTransactionAmount.value,
+            comments:        updateTransactionForm.updatedTransactionComment.value
+        })
+    });
+    let responseData = await response.json();
+    updateTransactionModal.hide();
+
+    if (responseData.status == "SUCCESSFUL")
+    {
+        toast("Expenses", "SUCCESSFUL", "Updated Transaction");
     }
     else if (responseData.status == "ERROR")
     {

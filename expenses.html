@@ -233,7 +233,7 @@
                         </div>
                         <div class="modal-footer">
                             <button id = "deleteTransactionButton" type="button" class="btn btn-danger" onclick = "DeleteTransaction()" data-transactionId = "">Delete</button>
-                            <button id = "updateTransactionButton" type="button" class="btn btn-primary" onclick = "UpdateTransaction()" data-transactionId="">Update</button>
+                            <button id = "updateTransactionButton" type="button" class="btn btn-primary" onclick = "UpdateTransaction()" data-transactionId = "">Update</button>
                         </div>
                     </div>
                 </div>
@@ -243,7 +243,7 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">New Transaction</h1>
+                            <h1 class="modal-title fs-5">New Transaction</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form id = "NewTransactionForm">
@@ -307,6 +307,81 @@
                                 
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div id = "UpdateTransactionModal" class="modal fade" tabindex="-1" data-bs-backdrop = "static" data-bs-keyboard = "false">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Update Transaction</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form id = "UpdateTransactionForm">
+                            <input hidden id = "updatedTransactionId" type = "number">
+                            <div class="modal-body">
+                                <div class = "input-group mb-3">
+                                    <div class = "form-floating" style = "max-width: 17.5%;">
+                                        <input id = "updatedTransactionDate" type = "number" min = "1" max = "31" class="form-control" aria-label = "Date (2 digit)" placeholder = "Transaction Date">
+                                        <label for = "updatedTransactionDate" class="form-label">Date</label>
+                                    </div>
+
+                                    <div class = "form-floating">
+                                        <input id = "updatedTransactionName" type = "text" maxlength = "16" class = "form-control" aria-label = "TransactionName" placeholder = "Transaction Name">
+                                        <label for = "updatedTransactionName" class="form-label">Transaction Name</label>
+                                    </div>
+
+                                    <div class = "form-floating" style = "max-width: 25%;">
+                                        <input id = "updatedTransactionAmount" type = "number" class = "form-control" aria-label = "Amount" placeholder = "Transaction Amount">
+                                        <label for = "updatedTransactionAmount" class="form-label">Amount</label>
+                                    </div>
+                                </div>
+
+                                <div class = "input-group mb-3">
+                                    <div class = "form-floating">
+                                        <select class = "form-select" id = "updatedTransactionCategory" name = "updatedTransactionCategory">
+                                            <option value = "0" selected>Grocery</option>
+                                            <option value = "1">Shopping</option>
+                                            <option value = "2">Food</option>
+                                            <option value = "3">Ration</option>
+                                            <option value = "4">Travel</option>
+                                            <option value = "5">Stationary</option>
+                                            <option value = "6">Print</option>
+                                            <option value = "7">Health</option>
+                                            <option value = "8">Service</option>
+                                            <option value = "9">Miscellaneous</option>
+                                        </select>
+
+                                        <label for = "updatedTransactionCategory" class = "form-label">Category</label>
+                                    </div>
+
+                                    <div class = "form-floating">
+                                        <select class = "form-select" id = "updatedTransactionMode">
+                                            <option value = "0" selected>Cash</option>
+                                            <option value = "1">UPI</option>
+                                            <option value = "2">Bank Transfer</option>
+                                        </select>
+
+                                        <label for = "updatedTransactionMode" class = "form-label">Mode</label>
+                                    </div>
+                                </div>
+
+                                <div class = "form-floating mb-3">
+                                    <input id = "updatedTransactionDescription" type = "text" maxlength = "32" class = "form-control" aria-label = "TransactionDescription" placeholder = "Transaction Description">
+                                    <label for = "updatedTransactionDescription" class="form-label">Description</label>
+                                </div>
+
+                                <div class = "form-floating mb-3">
+                                    <input id = "updatedTransactionComment" type = "text" maxlength = "32" class = "form-control" aria-label = "TransactionComment" placeholder = "Transaction Comment">
+                                    <label for = "updatedTransactionComment" class="form-label">Comment</label>
+                                </div>
+                            </div>
+                                
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </form>
                     </div>

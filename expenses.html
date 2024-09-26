@@ -158,15 +158,15 @@
             <div id = "NewSheetModal" class="modal fade" tabindex="-1" data-bs-backdrop = "static" data-bs-keyboard = "false">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header bg-secondary-subtle">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">New Sheet</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body border">
                             Sheet name:
                             <input type="text" id = "newSheetName" maxlength="20" style = "text-align: center; margin-top: 20px;" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer bg-secondary-subtle">
                             <button type="button" class="btn btn-primary" onclick = "NewSheet()">Create</button>
                         </div>
                     </div>
@@ -183,7 +183,7 @@
             <div id = "TransactionDetailsModal" class="modal fade" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header bg-secondary-subtle">
                             <h1 class="modal-title fs-5 me-3" id="TransactionDetailsModalTitle">Transaction</h1>
                             <ul class="nav nav-underline">
                                 <li class="nav-item">
@@ -195,9 +195,9 @@
                             </ul>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body tab-content">
+                        <div class="modal-body tab-content border">
                             <div class = "tab-pane fade show active" id = "details">
-                                <dl class="row">
+                                <dl class="row" style = "margin: 0px;">
                                     <dt class="col-sm-4">Date</dt>
                                     <dd class="col-sm-8" id = "TransactionDetailsDate">Date</dd>
 
@@ -221,17 +221,19 @@
                                 </dl>
                             </div>
                             <div class = "tab-pane fade" id = "info">
-                                <dt class="col-sm-4">Transaction ID</dt>
-                                <dd class="col-sm-8" id = "TransactionDetailsTransactionID">Transaction ID</dd>
+                                <dl class="row" style = "margin: 0px;">
+                                    <dt class="col-sm-4">Transaction ID</dt>
+                                    <dd class="col-sm-8" id = "TransactionDetailsTransactionID">Transaction ID</dd>
 
-                                <dt class="col-sm-4">Author</dt>
-                                <dd class="col-sm-8" id = "TransactionDetailsAuthor">Author</dd>
+                                    <dt class="col-sm-4">Author</dt>
+                                    <dd class="col-sm-8" id = "TransactionDetailsAuthor">Author</dd>
 
-                                <dt class="col-sm-4">Timestamp</dt>
-                                <dd class="col-sm-8" id = "TransactionDetailsTimestamp">Timestamp</dd>
+                                    <dt class="col-sm-4">Timestamp</dt>
+                                    <dd class="col-sm-8" id = "TransactionDetailsTimestamp">Timestamp</dd>
+                                </dl>
                             </div>
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer bg-secondary-subtle">
                             <button id = "deleteTransactionButton" type="button" class="btn btn-danger" onclick = "DeleteTransaction()" data-transactionId = "">Delete</button>
                             <button id = "updateTransactionButton" type="button" class="btn btn-primary" onclick = "UpdateTransaction()" data-transactionId = "">Update</button>
                         </div>
@@ -242,12 +244,12 @@
             <div id = "NewTransactionModal" class="modal fade" tabindex="-1" data-bs-backdrop = "static" data-bs-keyboard = "false">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header bg-secondary-subtle">
                             <h1 class="modal-title fs-5">New Transaction</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form id = "NewTransactionForm">
-                            <div class="modal-body">
+                            <div class="modal-body border">
                                 <div class = "input-group mb-3">
                                     <div class = "form-floating" style = "max-width: 17.5%;">
                                         <input id = "newTransactionDate" type = "number" min = "1" max = "31" class="form-control" aria-label = "Date (2 digit)" placeholder = "Transaction Date">
@@ -305,7 +307,7 @@
                                 </div>
                             </div>
                                 
-                            <div class="modal-footer">
+                            <div class="modal-footer bg-secondary-subtle">
                                 <button type="submit" class="btn btn-primary">Create</button>
                             </div>
                         </form>
@@ -316,13 +318,13 @@
             <div id = "UpdateTransactionModal" class="modal fade" tabindex="-1" data-bs-backdrop = "static" data-bs-keyboard = "false">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header bg-secondary-subtle">
                             <h1 class="modal-title fs-5">Update Transaction</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form id = "UpdateTransactionForm">
                             <input hidden id = "updatedTransactionId" type = "number">
-                            <div class="modal-body">
+                            <div class="modal-body border">
                                 <div class = "input-group mb-3">
                                     <div class = "form-floating" style = "max-width: 17.5%;">
                                         <input id = "updatedTransactionDate" type = "number" min = "1" max = "31" class="form-control" aria-label = "Date (2 digit)" placeholder = "Transaction Date">
@@ -380,7 +382,7 @@
                                 </div>
                             </div>
                                 
-                            <div class="modal-footer">
+                            <div class="modal-footer bg-secondary-subtle">
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </form>
@@ -395,7 +397,7 @@
 
         <div class="toast-container position-fixed bottom-0 end-0 p-3">
             <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
+                <div class="toast-header bg-secondary-subtle">
                     <strong id = "ToastHeader" class="me-auto">Bootstrap</strong>
                     <small id = "ToastDetail">11 mins ago</small>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>

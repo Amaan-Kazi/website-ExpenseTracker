@@ -92,11 +92,11 @@
         <div id = "RegisterModal" class="modal fade" tabindex="-1" data-bs-backdrop = "static" data-bs-keyboard = "false">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header bg-secondary-subtle">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Email Verification</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div id = "modalBody" class="modal-body">
+                    <div id = "modalBody" class="modal-body border">
                         An email containing a verification code was sent to <br>
                         <span id = "modalEmail" style="color: #3987fd;">{email}</span><br>
                         check your inbox and spam folder
@@ -105,7 +105,7 @@
                             <input type="text" id = "verificationCode" maxlength="6" style = "text-align: center; font-size: 48px; letter-spacing: 10px; margin-top: 20px;" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer bg-secondary-subtle">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick = "document.getElementById('emailId').focus();">Change Email</button>
                         <button type="button" class="btn btn-primary" onclick = "RegisterCode()">Submit</button>
                     </div>
@@ -115,7 +115,7 @@
 
         <div class="toast-container position-fixed bottom-0 end-0 p-3">
             <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
+                <div class="toast-header bg-secondary-subtle">
                     <!--<img src="..." class="rounded me-2" alt="...">-->
                     <strong id = "ToastHeader" class="me-auto">Bootstrap</strong>
                     <small id = "ToastDetail">11 mins ago</small>

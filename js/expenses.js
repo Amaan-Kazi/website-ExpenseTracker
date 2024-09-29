@@ -14,6 +14,10 @@ const selectedMonth = document.getElementById("Month");
 const newTransactionForm = document.getElementById("NewTransactionForm");
 const updateTransactionForm = document.getElementById("UpdateTransactionForm");
 
+// TODO //
+// fix not refreshed table after creating new for first time
+// fix non existent length property when result is empty
+
 window.addEventListener('popstate', function(event) {
     // The popstate event is fired each time when the current history entry changes.
     window.location.reload();
@@ -43,6 +47,7 @@ var userInfo = JSON.parse(localStorage.getItem("userInfo"));
 var currentView = "Sheets";
 var currentSheet;
 var sheets = [];
+var sheetDetails = [];
 var url = [];
 
 var transactionsDataTable = new DataTable('#TransactionsTable', {
@@ -126,6 +131,28 @@ function loading(isLoading)
     }
 }
 
+function PopulateCategories(sheetId)
+{
+    let categorySelect = document.getElementById("newTransactionCategory");
+    categorySelect.innerHTML = "";
+
+    sheetDetails[sheetId].categories.forEach((option, index) => {
+        let selectOption = new Option(option, index);
+        categorySelect.add(selectOption);
+    });
+}
+
+function PopulateModes(sheetId)
+{
+    let modeSelect = document.getElementById("newTransactionMode");
+    modeSelect.innerHTML = "";
+
+    sheetDetails[sheetId].modes.forEach((option, index) => {
+        let selectOption = new Option(option, index);
+        modeSelect.add(selectOption);
+    });
+}
+
 function New()
 {
     if (document.getElementById("NewButton").getAttribute("data-new") == "Transaction")
@@ -168,6 +195,8 @@ async function SelectSheet(selectedSheet)
 {
     currentSheet = selectedSheet;
     currentView = "Transactions";
+    PopulateCategories(currentSheet);
+    PopulateModes(currentSheet);
 
     document.getElementById("MonthYear").hidden = false;
     document.getElementById("NewButton").setAttribute("data-new", "Transaction");
@@ -246,11 +275,19 @@ async function GetSheets()
     for (let i = 0; i < responseData.response.length; i++)
     {
         sheets[i] = responseData.response[i].sheetid;
-        let membersList = "<ul>";
+        sheetDetails[responseData.response[i].sheetid] = responseData.response[i];
 
+        let membersList = "<ul>";
         for (let j = 0; j < responseData.response[i].sheetusers.length; j++)
         {
-            membersList += `<li>${responseData.response[i].sheetusers[j]}</li>`;
+            if (responseData.response[i].userNames.hasOwnProperty(responseData.response[i].sheetusers[j]))
+            {
+                membersList += `<li>${responseData.response[i].userNames[responseData.response[i].sheetusers[j]]}</li>`;
+            }
+            else
+            {
+                membersList += `<li>${responseData.response[i].sheetusers[j]}</li>`;
+            }
         }
         membersList += "</ul>";
 
@@ -599,6 +636,8 @@ async function load()
         }
 
         window.history.pushState({"Title": "Expense Tracker Transactions"}, "", `./expenses.html?${url[0]}/${selectedYear.options[selectedYear.selectedIndex].text}/${selectedMonth.options[selectedMonth.selectedIndex].text}`);
+        PopulateCategories(currentSheet);
+        PopulateModes(currentSheet);
         await GetTransactions();
     }
     else

@@ -37,17 +37,17 @@
             <form id = "RegisterForm">
                 <div class="mb-3">
                     <label for="emailId" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="emailId" placeholder="name@example.com">
+                    <input type="email" class="form-control" id="emailId" autocomplete="username" placeholder="name@example.com">
                 </div>
                 <div class="mb-3">
                     <label for="userName" class="form-label">User Name</label>
-                    <input type="text" class="form-control" id="userName" onkeyup="ValidateUserName()" placeholder="Full Name">
+                    <input type="text" class="form-control" id="userName" onkeyup="ValidateUserName()" autocomplete="name" placeholder="Full Name">
                     <div id="userNameHelpBlock" class="form-text" style = "color: rgb(189, 55, 55);"></div>
                 </div>
                 <div class = "mb-3">
                     <label for="inputPassword" class="form-label">Password</label>
                     <span class = "input-group mb-3">
-                        <input type="password" id="inputPassword" class="form-control" onkeyup="ValidatePassword()" aria-describedby="passwordHelpBlock">
+                        <input type="password" id="inputPassword" class="form-control" onkeyup="ValidatePassword()"  autocomplete="new-password" aria-describedby="passwordHelpBlock">
                         <button class="btn btn-outline-secondary" id="togglePassword" type = "button" onclick="TogglePassword()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" id = "inputPasswordShow" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                 <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
@@ -71,7 +71,7 @@
                 <div class = "mb-3">
                     <label for="inputConfirmPassword" class="form-label">Confirm Password</label>
                     <span class = "input-group mb-3">
-                        <input type="password" id="inputConfirmPassword" class="form-control" onkeyup = "MatchPasswords()" aria-describedby="passwordConfirmHelpBlock">
+                        <input type="password" id="inputConfirmPassword" class="form-control" onkeyup = "MatchPasswords()" autocomplete="new-password" aria-describedby="passwordConfirmHelpBlock">
                         <button class="btn btn-outline-secondary" id="toggleConfirmPassword" type = "button" onclick="ToggleConfirmPassword()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" id = "inputConfirmPasswordShow" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                 <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>

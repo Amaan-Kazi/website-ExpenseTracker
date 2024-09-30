@@ -1,3 +1,0 @@
-// Multiple problems, rename file to _headers to apply
-/*
-  Content-Security-Policy: default-src 'self'; script-src 'self' cdn.jsdelivr.net cdnjs.cloudflare.com cdn.datatables.net code.jquery.com; style-src 'self' cdn.jsdelivr.net cdn.datatables.net; img-src 'self'; connect-src 'self' amaankazi-expensetracker.onrender.com; font-src 'self'; object-src 'none'; frame-src 'none'; sandbox allow-forms allow-scripts; upgrade-insecure-requests;

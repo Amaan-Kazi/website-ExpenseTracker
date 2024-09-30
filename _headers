@@ -1,5 +1,5 @@
 /*
-    Content-Security-Policy: default-src 'self'; script-src 'self' cdn.jsdelivr.net cdnjs.cloudflare.com cdn.datatables.net code.jquery.com; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net cdn.datatables.net; img-src 'self' www.w3.org; connect-src 'self' amaankazi-expensetracker.onrender.com; font-src 'self'; object-src 'none'; frame-src 'none'; sandbox allow-forms allow-scripts allow-same-origin; upgrade-insecure-requests;
+    Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' cdn.jsdelivr.net cdnjs.cloudflare.com cdn.datatables.net code.jquery.com; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net cdn.datatables.net; img-src 'self' www.w3.org data:; connect-src 'self' amaankazi-expensetracker.onrender.com; font-src 'self'; object-src 'none'; frame-src 'none'; sandbox allow-forms allow-scripts allow-same-origin; upgrade-insecure-requests;
     Cache-Control: no-cache, no-store, must-revalidate
     Pragma: no-cache
     Expires: 0

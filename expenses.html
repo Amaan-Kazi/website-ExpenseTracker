@@ -248,7 +248,7 @@
                             <h1 class="modal-title fs-5">New Transaction</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form id = "NewTransactionForm">
+                        <form id = "NewTransactionForm" autocomplete="off">
                             <div class="modal-body border">
                                 <div class = "input-group mb-3">
                                     <div class = "form-floating" style = "max-width: 17.5%;">
@@ -257,7 +257,7 @@
                                     </div>
 
                                     <div class = "form-floating">
-                                        <input id = "newTransactionName" type = "text" maxlength = "16" class = "form-control" aria-label = "TransactionName" placeholder = "Transaction Name">
+                                        <input id = "newTransactionName" type = "text" maxlength = "24" class = "form-control" aria-label = "TransactionName" placeholder = "Transaction Name">
                                         <label for = "newTransactionName" class="form-label">Transaction Name</label>
                                     </div>
 
@@ -309,7 +309,7 @@
                             <h1 class="modal-title fs-5">Update Transaction</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form id = "UpdateTransactionForm">
+                        <form id = "UpdateTransactionForm" autocomplete="off">
                             <input hidden id = "updatedTransactionId" type = "number">
                             <div class="modal-body border">
                                 <div class = "input-group mb-3">
@@ -319,7 +319,7 @@
                                     </div>
 
                                     <div class = "form-floating">
-                                        <input id = "updatedTransactionName" type = "text" maxlength = "16" class = "form-control" aria-label = "TransactionName" placeholder = "Transaction Name">
+                                        <input id = "updatedTransactionName" type = "text" maxlength = "24" class = "form-control" aria-label = "TransactionName" placeholder = "Transaction Name">
                                         <label for = "updatedTransactionName" class="form-label">Transaction Name</label>
                                     </div>
 

@@ -133,23 +133,33 @@ function loading(isLoading)
 
 function PopulateCategories(sheetId)
 {
-    let categorySelect = document.getElementById("newTransactionCategory");
-    categorySelect.innerHTML = "";
+    let newCategorySelect = document.getElementById("newTransactionCategory");
+    let updatedCategorySelect = document.getElementById("updatedTransactionCategory");
+
+    newCategorySelect.innerHTML = "";
+    updatedCategorySelect.innerHTML = "";
 
     sheetDetails[sheetId].categories.forEach((option, index) => {
-        let selectOption = new Option(option, index);
-        categorySelect.add(selectOption);
+        let newSelectOption = new Option(option, index);
+        let updatedSelectOption = new Option(option, index);
+        newCategorySelect.add(newSelectOption);
+        updatedCategorySelect.add(updatedSelectOption);
     });
 }
 
 function PopulateModes(sheetId)
 {
-    let modeSelect = document.getElementById("newTransactionMode");
-    modeSelect.innerHTML = "";
+    let newModeSelect = document.getElementById("newTransactionMode");
+    let updatedModeSelect = document.getElementById("updatedTransactionMode");
+
+    newModeSelect.innerHTML = "";
+    updatedModeSelect.innerHTML = "";
 
     sheetDetails[sheetId].modes.forEach((option, index) => {
-        let selectOption = new Option(option, index);
-        modeSelect.add(selectOption);
+        let newSelectOption = new Option(option, index);
+        let updatedSelectOption = new Option(option, index);
+        newModeSelect.add(newSelectOption);
+        updatedModeSelect.add(updatedSelectOption);
     });
 }
 
@@ -376,7 +386,7 @@ async function GetTransactions()
 
     if (responseData.status == "SUCCESSFUL")
     {
-        console.log(responseData);
+        //console.log(responseData);
         transactionsDataTable.clear().draw();
 
         // Convert objects to arrays
@@ -405,8 +415,6 @@ function UpdateTransaction()
     updateTransactionForm.updatedTransactionId.value = updateTransactionButton.getAttribute("data-transactionId");
 
     let tDate = transactionDetailsDate.innerText.split("-");
-    console.log(tDate);
-    console.log(transactionDetailsCategory.innerText)
 
     updateTransactionForm.updatedTransactionDate.value = tDate[2];
     updateTransactionForm.updatedTransactionName.value = transactionDetailsTransaction.innerText;

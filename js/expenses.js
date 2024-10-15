@@ -14,10 +14,6 @@ const selectedMonth = document.getElementById("Month");
 const newTransactionForm = document.getElementById("NewTransactionForm");
 const updateTransactionForm = document.getElementById("UpdateTransactionForm");
 
-// TODO //
-// fix not refreshed table after creating new for first time
-// fix non existent length property when result is empty
-
 window.addEventListener('popstate', function(event) {
     // The popstate event is fired each time when the current history entry changes.
     window.location.reload();
@@ -85,6 +81,8 @@ var transactionsDataTable = new DataTable('#TransactionsTable', {
         {title: "Timestamp", responsivePriority: 7, visible: false},
         {title: "Author", responsivePriority: 7, visible: false},
     ],
+
+    order: [[1, 'asc']],
 
     colReorder: {
         order: [0, 1, 2, 3, 5, 4, 6, 7, 9, 8]
